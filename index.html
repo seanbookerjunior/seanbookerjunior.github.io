@@ -38,7 +38,7 @@
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       color: #3b82f6;
       margin-bottom: 0.5rem;
     }
@@ -56,7 +56,7 @@
     }
 
     section {
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     h2 {
@@ -112,7 +112,7 @@
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     }
 
     .offer-box {
@@ -128,6 +128,18 @@
     .offer-box h3 {
     margin-bottom: 1rem;
     color: #007bff;
+    }
+    .about-video {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+.about-video video {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 1rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
 
     @media (max-width: 600px) {
@@ -150,6 +162,18 @@
   </header>
 
   <section>
+        <!-- Video Section -->
+        <div class="about-video">
+            <video src="videos/videogym.MOV" controls></video>
+        </div>
+      <div class="about-gallery">
+          <img src="images/photo1.jpg" alt="Photo 1">
+          <img src="images/photo2.jpeg" alt="Photo 2">
+          <img src="images/photo3.jpeg" alt="Photo 3">
+          <img src="images/photo4.jpeg" alt="Photo 4">
+        </div>
+        <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call now</a>
+    </section>
     <h2>About Sean Wavy</h2>
     <p>I believe transformation starts with brutal honesty.
         You look at your life. You see where you are. You admit you don’t like it — and instead of running from that truth, you use it as fuel.
@@ -161,13 +185,6 @@
         
         Let’s turn that frustration into progress.
         </p>
-    <div class="about-gallery">
-        <img src="images/photo1.jpg" alt="Photo 1">
-        <img src="images/photo2.jpeg" alt="Photo 2">
-        <img src="images/photo3.jpeg" alt="Photo 3">
-        <img src="images/photo4.jpeg" alt="Photo 4">
-      </div>
-  </section>
 
   <section>
     <h2>What I Offer (1:1 lifestyle coaching)</h2>
@@ -191,6 +208,7 @@
           </div>
         </div>
       </section>
+      <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call now</a>
   </section>
 
   <section>
