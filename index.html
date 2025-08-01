@@ -50,7 +50,7 @@
 
 
     .logo {
-        width: 40px; /* or whatever size looks good */
+        width: 15px; /* or whatever size looks good */
         height: auto;
         margin-bottom: 1rem;
     }
@@ -105,6 +105,33 @@
         object-fit: cover;
     }
 
+    #what-i-offer {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+    .offer-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+    }
+
+    .offer-box {
+    background-color: rgba(0, 123, 255, 0.1); /* translucent blue */
+    border: 1px solid rgba(0, 123, 255, 0.3);
+    padding: 2rem;
+    width: 300px;
+    border-radius: 1rem;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .offer-box h3 {
+    margin-bottom: 1rem;
+    color: #007bff;
+    }
 
     @media (max-width: 600px) {
       header h1 {
@@ -125,18 +152,45 @@
   </header>
 
   <section>
-    <h2>About Me</h2>
-    <p>They call me Sean Wavy (backwards hat guy). I was tired of being a nobody, so I decided to do something about it. The only person standing in my way was... me. Once I realized that, I became obsessed with fitness, improved my social skills by 10x, increased my cashflow, and started attracting the women I want. I'm not special. This could be you as well.</p>
+    <h2>About Sean Wavy</h2>
+    <p>I believe transformation starts with brutal honesty.
+        You look at your life. You see where you are. You admit you don’t like it — and instead of running from that truth, you use it as fuel.
+        
+        That’s what changed everything for me. I stopped fantasizing about who I could be and started building him — day by day, set by set, decision by decision.
+        
+        This brand, this movement, is for people who are done pretending they're okay with “average” or done with their pessimistic view of life.
+        If you’ve got a vision of yourself you can’t shake — and a fire in your gut that won’t go away — you're in the right place.
+        
+        Let’s turn that frustration into progress.
+        </p>
     <div class="about-gallery">
         <img src="images/photo1.jpg" alt="Photo 1">
         <img src="images/photo2.jpeg" alt="Photo 2">
         <img src="images/photo3.jpeg" alt="Photo 3">
+        <img src="images/photo4.jpeg" alt="Photo 4">
       </div>
   </section>
 
   <section>
     <h2>What I Offer</h2>
     <p>1:1 coaching to build routine, mindset, and body.</p>
+    <section id="what-i-offer">
+        <h2>What I Offer</h2>
+        <div class="offer-boxes">
+          <div class="offer-box">
+            <h3>Fitness</h3>
+            <p>I'll help you build a body you’re proud of — with simple, sustainable gym routines and guidance to stay consistent even when motivation fades.</p>
+          </div>
+          <div class="offer-box">
+            <h3>Social Skills</h3>
+            <p>If you struggle with confidence, conversation, or showing up as your true self, I’ll teach you how to own any room without changing who you are.</p>
+          </div>
+          <div class="offer-box">
+            <h3>Relationships</h3>
+            <p>Learn how to set standards, communicate clearly, and attract people who respect your mission — instead of ones who drain your energy.</p>
+          </div>
+        </div>
+      </section>
   </section>
 
   <section>
