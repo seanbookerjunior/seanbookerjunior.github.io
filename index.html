@@ -50,7 +50,7 @@
 
 
     .logo {
-        width: 15px; /* or whatever size looks good */
+        width: 5px; /* or whatever size looks good */
         height: auto;
         margin-bottom: 1rem;
     }
@@ -90,25 +90,22 @@
     }
 
     .about-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-top: 1.5rem;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+        gap: 1rem;
+        max-width: 600px;
+        margin: 2rem auto;
     }
 
-.about-gallery img {
-        width: 200px;
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    .about-gallery img {
+        width: 100%;
+        border-radius: 1rem;
         object-fit: cover;
     }
-
-    #what-i-offer {
-  text-align: center;
-  padding: 4rem 2rem;
-}
+        #what-i-offer {
+    text-align: center;
+    padding: 4rem 2rem;
+    }
 
     .offer-boxes {
     display: flex;
@@ -172,8 +169,7 @@
   </section>
 
   <section>
-    <h2>What I Offer</h2>
-    <p>1:1 coaching to build routine, mindset, and body.</p>
+    <h2>What I Offer (1:1 lifestyle coaching)</h2>
     <section id="what-i-offer">
         <h2>What I Offer</h2>
         <div class="offer-boxes">
@@ -189,14 +185,18 @@
             <h3>Relationships</h3>
             <p>Learn how to set standards, communicate clearly, and attract people who respect your mission — instead of ones who drain your energy.</p>
           </div>
+          <div class="offer-box">
+            <h3>Career & Money</h3>
+            <p>I’ll help you think strategically about income, opportunity, and self-worth — so you can escape survival mode and build a life that scales.</p>
+          </div>
         </div>
       </section>
   </section>
 
   <section>
-    <h2>Work With Me</h2>
-    <p>Set an appointment to speak with me to see if you would be a good fit for my program.</p>
-    <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call</a>
+    <h2>Ready to start?</h2>
+    <p>Book a free 30-minute strategy call to discuss your goals, situation, and see if my coaching program is right for you. No sales pressure.</p>
+    <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call now</a>
   </section>
 
   <section>
