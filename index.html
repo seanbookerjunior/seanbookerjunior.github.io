@@ -82,6 +82,23 @@
       margin: 0.3rem 0;
     }
 
+    .about-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 1.5rem;
+        justify-content: center;
+    }
+
+.about-gallery img {
+        width: 200px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        object-fit: cover;
+    }
+
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -95,6 +112,7 @@
 </head>
 <body>
   <header>
+    <img src="/Users/seanwavy/Development/elvyn/images/2C62D694-64C4-4F3E-A60D-7272C72B774F.jpg" alt="logo">
     <h1>ELVYN</h1>
     <p>Let's improve your life together</p>
   </header>
@@ -102,6 +120,11 @@
   <section>
     <h2>About Me</h2>
     <p>They call me Sean Wavy (backwards hat guy). I was tired of being a nobody, so I decided to do something about it. The only person standing in my way was... me. Once I realized that, I became obsessed with fitness, improved my social skills by 10x, increased my cashflow, and started attracting the women I want. I'm not special. This could be you as well.</p>
+    <div class="about-gallery">
+        <img src="/Users/seanwavy/Development/elvyn/images/photo-output_1.jpg" alt="Photo 1">
+        <img src="/Users/seanwavy/Development/elvyn/images/photo-output 2.jpeg" alt="Photo 2">
+        <img src="/Users/seanwavy/Development/elvyn/images/photo-output 3.jpeg" alt="Photo 3">
+      </div>
   </section>
 
   <section>
@@ -112,7 +135,7 @@
   <section>
     <h2>Work With Me</h2>
     <p>Set an appointment to speak with me to see if you would be a good fit for my program.</p>
-    <a href="mailto:elvynathletics@gmail.com" class="cta">Book a Call</a>
+    <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call</a>
   </section>
 
   <section>
