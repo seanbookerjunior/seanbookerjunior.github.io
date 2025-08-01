@@ -142,6 +142,39 @@
         box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
 
+    #benefits {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.benefit-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.benefit-box {
+  background-color: rgba(0, 123, 255, 0.08); /* subtle translucent blue */
+  border: 1px solid rgba(0, 123, 255, 0.3);
+  padding: 2rem;
+  width: 300px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.benefit-box:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-box h3 {
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -173,18 +206,18 @@
           <img src="images/photo4.jpeg" alt="Photo 4">
         </div>
         <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call now</a>
+        <h2>About Sean Wavy</h2>
+        <p>I believe transformation starts with brutal honesty.
+            You look at your life. You see where you are. You admit you don’t like it — and instead of running from that truth, you use it as fuel.
+            
+            That’s what changed everything for me. I stopped fantasizing about who I could be and started building him — day by day, set by set, decision by decision.
+            
+            This brand, this movement, is for people who are done pretending they're okay with “average” or done with their pessimistic view of life.
+            If you’ve got a vision of yourself you can’t shake — and a fire in your gut that won’t go away — you're in the right place.
+            
+            Let’s turn that frustration into progress.
+            </p>
     </section>
-    <h2>About Sean Wavy</h2>
-    <p>I believe transformation starts with brutal honesty.
-        You look at your life. You see where you are. You admit you don’t like it — and instead of running from that truth, you use it as fuel.
-        
-        That’s what changed everything for me. I stopped fantasizing about who I could be and started building him — day by day, set by set, decision by decision.
-        
-        This brand, this movement, is for people who are done pretending they're okay with “average” or done with their pessimistic view of life.
-        If you’ve got a vision of yourself you can’t shake — and a fire in your gut that won’t go away — you're in the right place.
-        
-        Let’s turn that frustration into progress.
-        </p>
 
   <section>
     <h2>What I Offer (1:1 lifestyle coaching)</h2>
@@ -207,9 +240,33 @@
             <p>I’ll help you think strategically about income, opportunity, and self-worth — so you can escape survival mode and build a life that scales.</p>
           </div>
         </div>
+        <p></p>
       </section>
       <a href="https://calendly.com/seanwavyproductions/30min" class="cta">Book a Call now</a>
   </section>
+
+  <section id="benefits">
+    <h2>Benefits</h2>
+    <div class="benefit-boxes">
+      <div class="benefit-box">
+        <h3>Custom Training Programs</h3>
+        <p>Personalized workouts built around your goals, schedule, and experience level — no more guessing in the gym.</p>
+      </div>
+      <div class="benefit-box">
+        <h3>Mindset Transformation</h3>
+        <p>Develop the discipline, clarity, and resilience needed to become the person you keep imagining.</p>
+      </div>
+      <div class="benefit-box">
+        <h3>24/7 Direct Access</h3>
+        <p>Message me anytime for feedback, support, or adjustments — you're never left on your own.</p>
+      </div>
+      <div class="benefit-box">
+        <h3>Weekly Check-Ins & Nutrition</h3>
+        <p>Stay accountable with regular reviews and tailored nutrition tweaks to keep you progressing.</p>
+      </div>
+    </div>
+  </section>
+  
 
   <section>
     <h2>Ready to start?</h2>
