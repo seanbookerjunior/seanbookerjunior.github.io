@@ -90,8 +90,9 @@
     }
 
     .about-gallery {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+        display: flex;
+        /* grid-template-columns: repeat(2, 1fr); */
+        flex-wrap: wrap;
         gap: 1rem;
         max-width: 600px;
         margin: 2rem auto;
