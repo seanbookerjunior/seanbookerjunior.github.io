@@ -178,6 +178,44 @@
   color: #007bff;
 }
 
+.social-buttons {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+    }
+
+    /* Each button */
+    .social-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    /* Icon styling */
+    .social-buttons img {
+      width: 18px;
+      height: 18px;
+      filter: invert(1); /* makes SVG icons white */
+    }
+
+    /* Hover effect */
+    .social-buttons a:hover {
+      transform: scale(1.15);
+    }
+
+    /* Special colors */
+    .instagram { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
+    .youtube { background: #ff0000; }
+
 
     @media (max-width: 600px) {
       header h1 {
@@ -192,31 +230,20 @@
 </head>
 <body>
   <!-- Pinned Social Media Buttons -->
-<div class="fixed top-4 right-4 flex space-x-3 z-50">
-  <!-- TikTok -->
-  <a href="https://www.tiktok.com/@seanwavy" target="_blank" class="p-2 bg-black rounded-full shadow-md hover:scale-110 transition">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" 
-         alt="TikTok" class="w-4 h-4 invert" />
-  </a>
-
-  <!-- Instagram -->
-  <a href="https://www.instagram.com/seanwavy/?hl=en" target="_blank" class="p-2 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full shadow-md hover:scale-110 transition">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" 
-         alt="Instagram" class="w-4 h-4 invert" />
-  </a>
-
-  <!-- Twitter/X -->
-  <a href="https://x.com/prodseanwavy" target="_blank" class="p-2 bg-black rounded-full shadow-md hover:scale-110 transition">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" 
-         alt="X" class="w-4 h-4 invert" />
-  </a>
-
-  <!-- YouTube -->
-  <a href="https://www.youtube.com/@seanwavy" class="p-2 bg-red-600 rounded-full shadow-md hover:scale-110 transition">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" 
-         alt="YouTube" class="w-4 h-4 invert" />
-  </a>
-</div>
+  <div class="social-buttons">
+    <a href="https://www.tiktok.com/@seanwavy" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok">
+    </a>
+    <a href="https://www.instagram.com/seanwavy" target="_blank" class="instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+    </a>
+    <a href="https://x.com/prodseanwavy" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
+    </a>
+    <a href="https://www.youtube.com/@seanwavy" target="_blank" class="youtube">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
+    </a>
+  </div>
   <header>
     <img src="images/logo.jpg" alt="logo" class="logo">
     <h1>ELVYN</h1>
