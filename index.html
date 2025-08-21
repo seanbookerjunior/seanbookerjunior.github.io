@@ -251,7 +251,7 @@
     <img src="images/logo.jpg" alt="logo" class="logo">
     <h1>ELVYN</h1>
     <p>Telling you what no one told me.</p>
-    <a href="https://calendly.com/elvyn/30min" class="cta">Book a Call now</a>
+    <a href="#" class="cta book-now">Book a Call now</a>
     <div id="paypal-container-R6D8CXCAWFMFW"></div>
   </header>
 
@@ -278,7 +278,7 @@
           
           Let’s turn that frustration into real results. Let’s get to work.
             </p>
-            <a href="https://calendly.com/elvyn/30min" class="cta">Book a Call now</a>
+            <a href="#" class="cta book-now">Book a Call now</a>
     </section>
 
   <section>
@@ -300,7 +300,7 @@
         </div>
         <p></p>
       </section>
-      <a href="https://calendly.com/elvyn/30min" class="cta">Book a Call now</a>
+      <a href="#" class="cta book-now">Book a Call now</a>
   </section>
 
   <section>
@@ -328,17 +328,16 @@
 </section>
   
 
-  <section>
-    <h2>Ready to start?</h2>
-    <p>Book a free 30-minute strategy call to discuss your goals, situation, and see if my coaching program is right for you. No sales pressure.</p>
-    <div id="paypal-container-MYZN72QE54PJQ"></div>
-    <style>.pp-MYZN72QE54PJQ{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
-    <form action="https://www.paypal.com/ncp/payment/MYZN72QE54PJQ" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
-      <input class="pp-MYZN72QE54PJQ" type="submit" value="Buy Now" />
-      <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
-      <section style="font-size: 0.75rem;"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
-    </form>
-  </section>
+<section id="paypal-section">
+  <h2>Ready to start?</h2>
+  <p>Book a free 30-minute strategy call to discuss your goals, situation, and see if my coaching program is right for you. No sales pressure.</p>
+  <div id="paypal-container-MYZN72QE54PJQ"></div>
+  <style>.pp-MYZN72QE54PJQ{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+  <form action="https://www.paypal.com/ncp/payment/MYZN72QE54PJQ" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+    <input class="pp-MYZN72QE54PJQ" type="submit" value="Buy Now" />
+    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+  </form>
+</section>
 
   <section>
     <h2>Connect</h2>
@@ -353,5 +352,15 @@
   <footer>
     <p>&copy; 2025 ELVYN. All rights reserved.</p>
   </footer>
+  <script>
+    document.querySelectorAll('.book-now').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault(); // stop default link behavior
+        document.getElementById('paypal-section').scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      });
+    });
+  </script>
 </body>
 </html>
