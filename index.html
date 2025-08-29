@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-2S3S47GCPT');
 </script>
   <meta charset="UTF-8" />
@@ -32,6 +31,7 @@
       color: white;
       line-height: 1.6;
       padding: 2rem;
+      text-align: center; /* global centering */
     }
 
     a {
@@ -43,9 +43,6 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem 1rem;
-    }
-
-    header {
       text-align: center;
     }
 
@@ -58,35 +55,40 @@
     header p {
       font-size: 1.2rem;
       color: #ffffffcc;
+      margin-bottom: 1rem;
     }
 
-
     .logo {
-        width: 110px; /* or whatever size looks good */
+        width: 110px;
         height: auto;
         margin-bottom: 0.5rem;
     }
 
-    section {
-      margin-top: 0.5rem;
+    h2, h3 {
+      color: #ffffff;
+      margin-bottom: 1rem;
     }
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #ffffff;
+    p {
+      color: #ffffffcc;
+      margin-bottom: 1rem;
     }
 
     .cta {
+      display: inline-block;
       background-color: #3b82f6;
       color: white;
       padding: 1rem 2rem;
-      border: none;
       border-radius: 8px;
-      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      margin: 0.5rem 0;
       cursor: pointer;
-      margin-top: 1rem;
-      display: inline-block;
+    }
+
+    .cta:hover {
+      background-color: #5469d4;
     }
 
     footer {
@@ -103,11 +105,11 @@
 
     .about-gallery {
         display: flex;
-        /* grid-template-columns: repeat(2, 1fr); */
         flex-wrap: wrap;
         gap: 1rem;
         max-width: 600px;
         margin: 2rem auto;
+        justify-content: center;
     }
 
     .about-gallery img {
@@ -115,79 +117,51 @@
         border-radius: 1rem;
         object-fit: cover;
     }
-        #what-i-offer {
-    text-align: center;
-    padding: 1rem 2rem;
-    }
 
-    .offer-boxes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    margin-top: 0.5rem;
-    }
-
-    .offer-box {
-    background-color: rgba(0, 123, 255, 0.1); /* translucent blue */
-    border: 1px solid rgba(0, 123, 255, 0.3);
-    padding: 2rem;
-    width: 300px;
-    border-radius: 1rem;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .offer-box h3 {
-    margin-bottom: 1rem;
-    color: #007bff;
-    }
     .about-video {
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
     }
 
-.about-video video {
+    .about-video video {
         width: 100%;
         max-width: 600px;
         border-radius: 1rem;
         box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
 
-    #benefits {
-  text-align: center;
-  padding: 1rem 1rem;
-}
+    .offer-boxes, .benefit-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
 
-.benefit-boxes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
+    .offer-box, .benefit-box {
+      background-color: rgba(0, 123, 255, 0.1);
+      border: 1px solid rgba(0, 123, 255, 0.3);
+      padding: 2rem;
+      width: 280px;
+      border-radius: 1rem;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-.benefit-box {
-  background-color: rgba(0, 123, 255, 0.08); /* subtle translucent blue */
-  border: 1px solid rgba(0, 123, 255, 0.3);
-  padding: 2rem;
-  width: 300px;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
-}
+    .offer-box h3, .benefit-box h3 {
+      margin-bottom: 1rem;
+      color: #007bff;
+    }
 
-.benefit-box:hover {
-  transform: translateY(-5px);
-}
+    .benefit-box:hover {
+      transform: translateY(-5px);
+      transition: transform 0.2s ease;
+    }
 
-.benefit-box h3 {
-  margin-bottom: 1rem;
-  color: #007bff;
-}
-
-.social-buttons {
+    /* Social buttons pinned */
+    .social-buttons {
       position: fixed;
       top: 15px;
       right: 15px;
@@ -196,7 +170,6 @@
       z-index: 9999;
     }
 
-    /* Each button */
     .social-buttons a {
       display: flex;
       align-items: center;
@@ -209,22 +182,18 @@
       transition: transform 0.2s ease;
     }
 
-    /* Icon styling */
     .social-buttons img {
       width: 18px;
       height: 18px;
-      filter: invert(1); /* makes SVG icons white */
+      filter: invert(1);
     }
 
-    /* Hover effect */
     .social-buttons a:hover {
       transform: scale(1.15);
     }
 
-    /* Special colors */
     .instagram { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
     .youtube { background: #ff0000; }
-
 
     @media (max-width: 600px) {
       header h1 {
@@ -256,6 +225,7 @@
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord">
     </a>
   </div>
+
   <header>
     <img src="images/logo.jpg" alt="logo" class="logo">
     <h1>ELVYN</h1>
@@ -265,135 +235,81 @@
   </header>
 
   <section>
-        <!-- Video Section -->
-        <div class="about-video">
-            <video src="videos/videogym.MOV" controls autoplay muted loop playsinline></video>
-        </div>
-      <div class="about-gallery">
-          <img src="images/photo5.PNG" alt="Photo 1">
-          <img src="images/photo6.jpg" alt="Photo 2">
-          <img src="images/photo7.jpg" alt="Photo 4">
-        </div>
-        
-        <h2>About Sean Wavy (Backwards Hat Guy)</h2>
-        <p>I believe transformation starts with brutal honesty.
-          You look at your life. You see where you are. You admit the truth: you’re not proud of it. And instead of running from that truth, you use it as fuel.
-          
-          That’s what changed everything for me. Discipline. Structure. Ownership. It’s the same mindset that now helps others reclaim their lives.
-          
-          This brand, this movement, is for the person who’s done pretending they’re okay with where they’re at. It’s for the person who’s tired of being out of shape, tired of hiding from mirrors, tired of watching life pass by.
-          
-          If there’s a version of you in your head you can’t stop thinking about, you’re in the right place.
-          
-          Let’s turn that frustration into real results. Let’s get to work.
-            </p>
-            <a href="#" class="cta book-now">Book a Call now</a>
-    </section>
+    <div class="about-video">
+        <video src="videos/videogym.MOV" controls autoplay muted loop playsinline></video>
+    </div>
+    <div class="about-gallery">
+        <img src="images/photo5.PNG" alt="Photo 1">
+        <img src="images/photo6.jpg" alt="Photo 2">
+        <img src="images/photo7.jpg" alt="Photo 4">
+    </div>
+    
+    <h2>About Sean Wavy (Backwards Hat Guy)</h2>
+    <p>I believe transformation starts with brutal honesty. You look at your life. You see where you are. You admit the truth: you’re not proud of it. And instead of running from that truth, you use it as fuel.</p>
+    <p>That’s what changed everything for me. Discipline. Structure. Ownership. It’s the same mindset that now helps others reclaim their lives.</p>
+    <p>This brand, this movement, is for the person who’s done pretending they’re okay with where they’re at. It’s for the person who’s tired of being out of shape, tired of hiding from mirrors, tired of watching life pass by.</p>
+    <p>If there’s a version of you in your head you can’t stop thinking about, you’re in the right place. Let’s turn that frustration into real results. Let’s get to work.</p>
+    <a href="#" class="cta book-now">Book a Call now</a>
+  </section>
 
   <section>
     <h2>What I Offer (1:1 lifestyle coaching)</h2>
-    <section id="what-i-offer">
-        <div class="offer-boxes">
-          <div class="offer-box">
-            <h3>Fitness</h3>
-            <p>I'll help you build a body you’re proud of with simple, sustainable gym routines and guidance to stay consistent even when motivation fades.</p>
-          </div>
-          <div class="offer-box">
-            <h3>Nutrition</h3>
-            <p>No crash diets, no starvation. Just a personalized, sustainable plan that helps you lose weight without hating food. Built to fit your real lifestyle, not ruin it.</p>
-          </div>
-          <div class="offer-box">
-            <h3>Accountability</h3>
-            <p>changing your life takes more than a meal plan. I’ll personally guide you through setbacks, plateaus, and moments you want to quit.</p>
-          </div>
-        </div>
-        <p></p>
-      </section>
-      <a href="#" class="cta book-now">Book a Call now</a>
+    <div class="offer-boxes">
+      <div class="offer-box">
+        <h3>Fitness</h3>
+        <p>I'll help you build a body you’re proud of with simple, sustainable gym routines and guidance to stay consistent even when motivation fades.</p>
+      </div>
+      <div class="offer-box">
+        <h3>Nutrition</h3>
+        <p>No crash diets, no starvation. Just a personalized, sustainable plan that helps you lose weight without hating food. Built to fit your real lifestyle, not ruin it.</p>
+      </div>
+      <div class="offer-box">
+        <h3>Accountability</h3>
+        <p>Changing your life takes more than a meal plan. I’ll personally guide you through setbacks, plateaus, and moments you want to quit.</p>
+      </div>
+    </div>
+    <a href="#" class="cta book-now">Book a Call now</a>
   </section>
 
   <section>
     <h2>Perks and Benefits</h2>
-    <section id="what-i-offer">
-        <div class="benefit-boxes">
-        <div class="benefit-box">
-            <h3>Custom Training Programs</h3>
-            <p>Personalized workouts built around your goals, schedule, and experience level. No more guessing in the gym.</p>
-        </div>
-        <div class="benefit-box">
-            <h3>Mindset Transformation</h3>
-            <p>Develop the discipline, clarity, and resilience needed to become the person you keep imagining.</p>
-        </div>
-        <div class="benefit-box">
-            <h3>24/7 Direct Access</h3>
-            <p>Message me anytime for feedback, support, or adjustments. You're never left on your own.</p>
-        </div>
-        <div class="benefit-box">
-            <h3>Weekly Check-Ins & Nutrition</h3>
-            <p>Stay accountable with regular reviews and tailored nutrition tweaks to keep you progressing.</p>
-        </div>
-        </div>
-    </section>
-</section>
-  
-
-<section id="paypal-section" style="max-width: 800px; margin: 0 auto; padding: 20px;">
-  <h2 style="text-align: center; margin-bottom: 24px;">Ready to start?</h2>
-  <p style="text-align: center; margin-bottom: 40px;">Book a strategy call to discuss your goals and situation. Choose the session length that works best for you:</p>
-
-  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-
-    <!-- 30-Minute Call Card -->
-    <div style="flex: 1 1 250px; border: 1px solid #ddd; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-      <h3 style="margin-bottom: 16px;">30-Minute Call</h3>
-      <p style="margin-bottom: 24px;">A focused 30-minute session to clarify your next steps and create momentum.</p>
-      <a href="https://buy.stripe.com/9B628q7gC0xmcX9arxbQY01" target="_blank" style="
-          display: inline-block;
-          background-color: #6772e5;
-          color: #fff;
-          font-weight: bold;
-          padding: 12px 24px;
-          text-decoration: none;
-          border-radius: 6px;
-          font-family: Arial, sans-serif;
-          transition: background-color 0.3s;
-      ">Buy Now</a>
+    <div class="benefit-boxes">
+      <div class="benefit-box">
+        <h3>Custom Training Programs</h3>
+        <p>Personalized workouts built around your goals, schedule, and experience level. No more guessing in the gym.</p>
+      </div>
+      <div class="benefit-box">
+        <h3>Mindset Transformation</h3>
+        <p>Develop the discipline, clarity, and resilience needed to become the person you keep imagining.</p>
+      </div>
+      <div class="benefit-box">
+        <h3>24/7 Direct Access</h3>
+        <p>Message me anytime for feedback, support, or adjustments. You're never left on your own.</p>
+      </div>
+      <div class="benefit-box">
+        <h3>Weekly Check-Ins & Nutrition</h3>
+        <p>Stay accountable with regular reviews and tailored nutrition tweaks to keep you progressing.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- 60-Minute Call Card -->
-    <div style="flex: 1 1 250px; border: 1px solid #ddd; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-      <h3 style="margin-bottom: 16px;">60-Minute Call</h3>
-      <p style="margin-bottom: 24px;">A full 60-minute session for deeper guidance and a personalized action plan.</p>
-      <a href="https://buy.stripe.com/8x23cu7gCa7W5uH439bQY00" target="_blank" style="
-          display: inline-block;
-          background-color: #6772e5;
-          color: #fff;
-          font-weight: bold;
-          padding: 12px 24px;
-          text-decoration: none;
-          border-radius: 6px;
-          font-family: Arial, sans-serif;
-          transition: background-color 0.3s;
-      ">Buy Now</a>
+  <!-- PayPal / Stripe Section -->
+  <section id="paypal-section">
+    <h2>Ready to start?</h2>
+    <p>Book a strategy call to discuss your goals and situation. Choose the session length that works best for you:</p>
+    <div class="offer-boxes">
+      <div class="offer-box">
+        <h3>30-Minute Call</h3>
+        <p>A focused 30-minute session to clarify your next steps and create momentum.</p>
+        <a href="https://buy.stripe.com/9B628q7gC0xmcX9arxbQY01" target="_blank" class="cta">Buy Now</a>
+      </div>
+      <div class="offer-box">
+        <h3>60-Minute Call</h3>
+        <p>A full 60-minute session for deeper guidance and a personalized action plan.</p>
+        <a href="https://buy.stripe.com/8x23cu7gCa7W5uH439bQY00" target="_blank" class="cta">Buy Now</a>
+      </div>
     </div>
-
-  </div>
-</section>
-
-<style>
-a:hover {
-    background-color: #5469d4;
-}
-</style>
-
-
-<style>
-a:hover {
-    background-color: #5469d4;
-}
-</style>
-
-</section>
+  </section>
 
   <section>
     <h2>Connect</h2>
@@ -408,10 +324,11 @@ a:hover {
   <footer>
     <p>&copy; 2025 ELVYN. All rights reserved.</p>
   </footer>
+
   <script>
     document.querySelectorAll('.book-now').forEach(button => {
       button.addEventListener('click', (e) => {
-        e.preventDefault(); // stop default link behavior
+        e.preventDefault(); 
         document.getElementById('paypal-section').scrollIntoView({ 
           behavior: 'smooth' 
         });
@@ -420,3 +337,4 @@ a:hover {
   </script>
 </body>
 </html>
+
