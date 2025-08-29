@@ -185,16 +185,43 @@
   margin-top: 2rem; /* adds space above the button */
 }
 
-    header .call-steps {
-      margin-top: 2rem; /* more space from buttons */
-      padding-left: 0;
-      list-style-position: inside;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #fff; /* white text */
-    }
+header .call-steps {
+  margin: 2.5rem auto 0 auto; /* centered block, with space from buttons */
+  max-width: 500px;           /* keeps text from stretching too wide */
+  padding-left: 0;
+  list-style: none;           /* remove default numbers */
+  text-align: left;           /* align list text left */
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #fff;
+}
+
+/* Style custom numbered circles */
+header .call-steps li {
+  position: relative;
+  padding-left: 2.5rem; /* space for circle */
+  margin-bottom: 1rem;
+}
+
+header .call-steps li::before {
+  content: counter(item);
+  counter-increment: item;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: #4f6cf3; /* button blue */
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 
