@@ -75,10 +75,24 @@
     }
 
     header .book-now {
-  display: block;       /* stack vertically */
-  margin: 0.5rem auto;  /* space between buttons + center */
-  max-width: 250px;     /* keep them a nice width */
+  display: block;          /* makes each button full-width block */
+  margin: 10px auto;       /* space them out + keep centered */
+  padding: 12px 24px;      /* consistent button size */
+  background-color: #6772e5;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s;
+  max-width: 250px;        /* prevents them from being too wide */
+  text-align: center;
 }
+
+header .book-now:hover {
+  background-color: #5469d4; /* hover effect */
+}
+
 
 
     .cta {
