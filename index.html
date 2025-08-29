@@ -197,9 +197,12 @@ header .call-steps {
   color: #fff;
 }
 
-/* Style custom numbered circles */
+header .call-steps {
+  counter-reset: item; /* reset the counter at the start of the list */
+}
+
 header .call-steps li {
-  list-style: decimal;
+  list-style: none; /* hide the browser’s default numbers */
   position: relative;
   padding-left: 2.5rem; /* space for circle */
   margin-bottom: 1rem;
