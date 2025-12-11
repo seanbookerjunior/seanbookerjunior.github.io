@@ -316,6 +316,10 @@ main {
   margin-bottom: 0.6rem;
 }
 
+.page-title span {
+    color: #3b82f6;
+}
+
 .page-subtitle {
   color: #9ca3af;
   max-width: 34rem;
