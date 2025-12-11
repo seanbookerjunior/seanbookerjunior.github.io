@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LOCK THE F* IN Tee | ELVYN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand">
+        <img src="../images/logo.jpg" alt="ELVYN logo" class="brand-logo" />
+        <span class="brand-text">ELVYN</span>
+      </a>
+
+      <nav>
+        <ul class="nav">
+          <li><a href="../system.html">System</a></li>
+          <li><a href="../coaching.html">Coaching</a></li>
+          <li><a href="../community.html">Community</a></li>
+          <li><a href="../shop.html" class="active">Shop</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- Back link -->
+        <p style="font-size:0.8rem;margin-bottom:1rem;">
+          <a href="../shop.html" style="color:#9ca3af;text-decoration:none;">← Back to shop</a>
+        </p>
+
+        <div class="grid-two">
+          
+          <!-- LEFT SIDE: Product Image -->
+          <div>
+            <div class="card" style="padding:1.2rem;">
+              <img
+                src="../images/lockinfront.png"
+                alt="LOCK THE F* IN Tee"
+                style="width:100%;border-radius:1rem;"
+              />
+            </div>
+            <div class="card" style="padding:1.2rem;">
+              <img
+                src="../images/lockinside.png"
+                alt="LOCK THE F* IN Tee"
+                style="width:100%;border-radius:1rem;"
+              />
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Product Details -->
+          <aside>
+            <header class="page-header">
+              <p class="page-kicker">Drop 01 · Limited Edition</p>
+              <h1 class="page-title">LOCK THE F* IN Tee</h1>
+              <h3>Midnight Navy</h3>
+              <p class="page-subtitle">$60.00 USD</p>
+            </header>
+
+            <!-- BUY BUTTON (Stripe) -->
+            <p style="margin-bottom:0.6rem;">
+              <a
+                href="https://buy.stripe.com/3cI4gydF05RG8GT6bhbQY05"
+                class="btn btn-primary"
+              >
+                Buy Now
+              </a>
+            </p>
+            <p style="font-size:0.8rem;color:#9ca3af;margin-bottom:1.6rem;">
+              Secure checkout powered by Stripe. Made to order and shipped in 5–9 business days.
+            </p>
+
+            <!-- Description -->
+            <div class="section" style="margin-bottom:1.5rem;">
+              <h2 class="card-title">The discipline piece.</h2>
+              <p style="font-size:0.92rem;color:#d1d5db;margin-top:0.4rem;">
+                The “LOCK THE F* IN” tee is the statement piece of Drop 01 — the mindset you're building
+                your entire life on. Printed on a deep Midnight Navy blank with crisp white letters
+                and a red accent on the “F*”, this shirt is a reminder to stay locked in everywhere
+                you go: the gym, the grind, your mission.
+              </p>
+            </div>
+
+            <!-- Fit & Details -->
+            <div class="section" style="margin-bottom:1.5rem;">
+              <h3 class="card-title">Fit & details</h3>
+              <p style="font-size:0.9rem;color:#d1d5db;margin-top:0.4rem;">
+                • Color: Midnight Navy (Printful Navy — #1B1F25)<br />
+                • Bold Anton typography<br />
+                • Red “F*” accent for signature punch<br />
+                • ELVYN sleeve branding<br />
+                • Premium cotton blend, soft but structured<br />
+                • True to size — size up for oversized look
+              </p>
+            </div>
+
+            <!-- Shipping -->
+            <div class="section" style="margin-bottom:1.5rem;">
+              <h3 class="card-title">Shipping</h3>
+              <p style="font-size:0.9rem;color:#d1d5db;margin-top:0.4rem;">
+                Shipping available to the United States and Canada. Each piece is made to order
+                through our fulfillment partner. Most orders ship within 5–9 business days.
+              </p>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="section">
+              <h3 class="card-title">Why this piece matters</h3>
+              <p style="font-size:0.9rem;color:#d1d5db;margin-top:0.4rem;">
+                This tee is more than a phrase — it’s a mindset. A commitment. A promise you make
+                to yourself every time you put it on. People won’t just ask what brand you’re wearing.
+                They’ll ask what you’re chasing.
+              </p>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span id="year"></span> ELVYN.</span>
+      <span>Wear the work.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

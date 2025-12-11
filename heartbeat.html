@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Heartbeat | ELVYN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Use global site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Heartbeat-specific styling (no global resets, no body/container overrides) -->
+  <style>
+    .heartbeat-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    .heartbeat-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: #9ca3af;
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .heartbeat-main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-meta {
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .helper-text {
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .honor-code {
+      border-left: 3px solid #38bdf8;
+      padding-left: 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+
+    .honor-code strong {
+      color: #38bdf8;
+    }
+
+    .log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 600px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .log-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .log-list::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 3px;
+    }
+
+    .log-list::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 3px;
+    }
+
+    .log-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.5);
+    }
+
+    .log-item {
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 0.75rem;
+      transition: all 0.2s;
+      animation: slideInLog 0.3s ease;
+    }
+
+    @keyframes slideInLog {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .log-item:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .log-handle {
+      font-weight: 600;
+      color: #38bdf8;
+      font-size: 0.9rem;
+    }
+
+    .log-badge {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .badge-win {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .badge-loss {
+      background: rgba(148, 163, 184, 0.2);
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .badge-neutral {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    .log-notes {
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .log-meta {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+      flex-wrap: wrap;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+      font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      color: #e5e7eb;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-toast {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+      animation: slideInToast 0.3s ease;
+      z-index: 1000;
+    }
+
+    @keyframes slideInToast {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOutToast {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+
+    .error-text {
+      color: #f87171;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Toggle styles */
+    .form-toggle {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 999px;
+      padding: 0.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 1.25rem;
+    }
+
+    .toggle-btn {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .toggle-btn span.emoji {
+      font-size: 1rem;
+    }
+
+    .toggle-btn.active {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #f9fafb;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .toggle-btn:not(.active):hover {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 768px) {
+      .heartbeat-main-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .heartbeat-title {
+        font-size: 2rem;
+      }
+
+      .success-toast {
+        left: 1rem;
+        right: 1rem;
+        top: 1rem;
+      }
+
+      @keyframes slideInToast {
+        from {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Site Header / Nav (matches other pages) ===== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <img src="images/logo.jpg" alt="ELVYN logo" class="brand-logo" />
+        <span class="brand-text">ELVYN</span>
+      </a>
+
+      <nav>
+        <ul class="nav">
+          <li><a href="system.html">System</a></li>
+          <li><a href="coaching.html">Coaching</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="heartbeat.html" class="active">Heartbeat</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="heartbeat-header">
+          <div class="live-indicator">
+            <span class="pulse-dot"></span>
+            <span>The Field is Live</span>
+          </div>
+          <h1 class="heartbeat-title">The Heartbeat</h1>
+          <p class="subtitle">
+            Real men. Real approaches. Real reps. Real improvement.
+          </p>
+          <p class="subtitle">This is what choosing action over fear looks like.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="card">
+            <div class="stat-number" id="stat-today">0</div>
+            <div class="stat-label">In the field today</div>
+            <div class="stat-meta" id="stat-today-meta">Loading...</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-number" id="stat-week">0</div>
+            <div class="stat-label">This week</div>
+            <div class="stat-meta" id="stat-week-meta">Total reps since Monday</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-number" id="stat-streak">—</div>
+            <div class="stat-label">Brotherhood Streak</div>
+            <div class="stat-meta" id="stat-streak-meta">Consecutive days with activity</div>
+          </div>
+        </div>
+
+        <div class="heartbeat-main-grid">
+          <div class="card">
+            <h2 class="card-title">Live Feed</h2>
+            <p class="helper-text">
+              Every line is someone who chose to move. Anonymous warriors building proof.
+            </p>
+            <div class="log-list" id="log-list"></div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title" id="form-title">You just took action. Log it.</h2>
+            <p class="helper-text" id="form-helper">
+              Every rep you log is proof you're not invisible anymore. The brotherhood sees you.
+            </p>
+
+            <!-- Toggle -->
+            <div class="form-toggle">
+              <button type="button" class="toggle-btn active" data-mode="dating">
+                <span class="emoji">💬</span>
+                <span>Dating Reps</span>
+              </button>
+              <button type="button" class="toggle-btn" data-mode="gym">
+                <span class="emoji">💪</span>
+                <span>Gym Reps</span>
+              </button>
+            </div>
+
+            <form id="heartbeat-form">
+              <!-- DATING FIELDS -->
+              <div id="dating-fields">
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="approachNumber">Approach #</label>
+                    <input type="number" id="approachNumber" min="1" max="100" placeholder="5" required />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="outcome">Outcome</label>
+                    <select id="outcome" required>
+                      <option value="win">Win</option>
+                      <option value="neutral">Neutral</option>
+                      <option value="loss">Rep 💪</option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="confidence">Confidence (1–10)</label>
+                    <input type="number" id="confidence" min="1" max="10" placeholder="7" required />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="location">Environment</label>
+                    <input type="text" id="location" placeholder="gym, street, campus..." required />
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="notes">What happened?</label>
+                    <textarea id="notes" placeholder="What did you learn? How did it feel?" required></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GYM FIELDS -->
+              <div id="gym-fields" style="display:none;">
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="workoutType">Workout</label>
+                    <input type="text" id="workoutType" placeholder="push, pull, legs, full body..." />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="gymOutcome">Session</label>
+                    <select id="gymOutcome">
+                      <option value="win">Crushed it</option>
+                      <option value="neutral">Solid work</option>
+                      <option value="loss">Showed up (Rep 💪)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="intensity">Intensity (1–10)</label>
+                    <input type="number" id="intensity" min="1" max="10" placeholder="8" />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="gymLocation">Environment</label>
+                    <input type="text" id="gymLocation" placeholder="commercial gym, home, park..." />
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="gymNotes">What did you do?</label>
+                    <textarea id="gymNotes" placeholder="Top sets, PRs, or the fact you showed up."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="honor-code">
+                <strong>The Brotherhood Code:</strong> Every log here is on your honor. 
+                We trust you. Don't log reps you didn't take. Don't betray the community. 
+                Real progress only comes from real work.
+              </div>
+
+              <button type="submit" class="btn" id="submit-btn" style="margin-top: 1rem;">Log Rep</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer (matches other pages) ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span id="year"></span> ELVYN.</span>
+<div style="display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap;">
+
+  <a href="https://tiktok.com/@seanwavy" target="_blank"
+     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg"
+         style="width:18px; height:18px; filter:invert(80%);" alt="TikTok" />
+    <span>@seanwavy</span>
+  </a>
+
+  <a href="https://discord.gg/WXKfqwEwj6" target="_blank"
+     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg"
+         style="width:18px; height:18px; filter:invert(80%);" alt="Discord" />
+    <span>Discord</span>
+  </a>
+
+  <a href="https://www.youtube.com/@seanwavy" target="_blank"
+     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"
+         style="width:18px; height:18px; filter:invert(80%);" alt="YouTube" />
+    <span>YouTube</span>
+  </a>
+
+  <a href="https://www.instagram.com/seanwavy/" target="_blank"
+     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"
+         style="width:18px; height:18px; filter:invert(80%);" alt="Instagram" />
+    <span>@seanwavy</span>
+  </a>
+
+</div>
+
+    </div>
+  </footer>
+
+  <script>
+    // footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- ===== Firebase Heartbeat Logic ===== -->
+  <script type="module">
+    // Firebase imports
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getDatabase, ref, push, onValue, query, orderByChild, limitToLast } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAnJIYEvLmyQX0FWdirTlvlfcVKgGNntfg",
+      authDomain: "the-heartbeat---elvyn.firebaseapp.com",
+      projectId: "the-heartbeat---elvyn",
+      storageBucket: "https://the-heartbeat---elvyn-default-rtdb.firebaseio.com/",
+      messagingSenderId: "21068620850",
+      appId: "1:21068620850:web:9685b7d15970dd7d7c482b",
+      measurementId: "G-FLBG2TF6Q9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Anonymous handle generation
+    const handles = [
+      "Wanderer", "Ghost", "Nomad", "Shadow", "Cipher", 
+      "Vanguard", "Maverick", "Rogue", "Seeker", "Outlaw",
+      "Phantom", "Titan", "Sentinel", "Hunter", "Warrior"
+    ];
+
+    function getHandle(id) {
+      const name = handles[id % handles.length];
+      const num = Math.floor(id / handles.length) + 1;
+      return name + num;
+    }
+
+    function timeAgo(timestamp) {
+      const diffMs = Date.now() - timestamp;
+      const diffMinutes = Math.floor(diffMs / (1000 * 60));
+      if (diffMinutes < 1) return "just now";
+      if (diffMinutes < 60) return diffMinutes + "m ago";
+      const diffHours = Math.floor(diffMinutes / 60);
+      if (diffHours < 24) return diffHours + "h ago";
+      const diffDays = Math.floor(diffHours / 24);
+      return diffDays + "d ago";
+    }
+
+    function computeStats(logs) {
+      const now = Date.now();
+      const dayMs = 1000 * 60 * 60 * 24;
+
+      let todayLogs = [];
+      let weekLogs = [];
+      let todayUsers = new Set();
+      let weekUsers = new Set();
+
+      logs.forEach(log => {
+        const diff = now - log.timestamp;
+        if (diff <= dayMs) {
+          todayLogs.push(log);
+          if (log.userId) todayUsers.add(log.userId);
+        }
+        if (diff <= dayMs * 7) {
+          weekLogs.push(log);
+          if (log.userId) weekUsers.add(log.userId);
+        }
+      });
+
+      const todayCount = todayUsers.size;
+      const weekCount = weekLogs.length;
+
+      // Calculate current streak
+      const streak = calculateStreak(logs);
+
+      return { todayCount, todayReps: todayLogs.length, weekCount, streak };
+    }
+
+    function calculateStreak(logs) {
+      if (!logs.length) return 0;
+
+      // Sort logs by timestamp (oldest first)
+      const sorted = [...logs].sort((a, b) => a.timestamp - b.timestamp);
+      
+      // Get unique days with activity
+      const daysWithActivity = new Set();
+      sorted.forEach(log => {
+        const day = new Date(log.timestamp).toDateString();
+        daysWithActivity.add(day);
+      });
+
+      const uniqueDays = Array.from(daysWithActivity).sort((a, b) => 
+        new Date(a) - new Date(b)
+      );
+
+      // Count consecutive days backwards from today
+      let streak = 0;
+      const today = new Date().toDateString();
+      let checkDate = new Date();
+
+      // Check if there's activity today, if not check yesterday
+      if (!uniqueDays.includes(today)) {
+        checkDate.setDate(checkDate.getDate() - 1);
+      }
+
+      // Count backwards from most recent activity
+      while (true) {
+        const dateStr = checkDate.toDateString();
+        if (uniqueDays.includes(dateStr)) {
+          streak++;
+          checkDate.setDate(checkDate.getDate() - 1);
+        } else {
+          break;
+        }
+      }
+
+      return streak;
+    }
+
+    function getBadgeClass(outcome) {
+      if (outcome === "win") return "log-badge badge-win";
+      if (outcome === "loss") return "log-badge badge-loss";
+      return "log-badge badge-neutral";
+    }
+
+    function getBadgeLabel(outcome) {
+      if (outcome === "win") return "Win";
+      if (outcome === "loss") return "Rep 💪";
+      return "Neutral";
+    }
+
+    function renderLogs(logs) {
+      const container = document.getElementById("log-list");
+      
+      if (!logs.length) {
+        container.innerHTML = '<p class="helper-text">No reps logged yet. Be the first.</p>';
+        return;
+      }
+
+      container.innerHTML = "";
+      const sorted = [...logs].sort((a, b) => b.timestamp - a.timestamp);
+
+      sorted.slice(0, 20).forEach(log => {
+        const item = document.createElement("div");
+        item.className = "log-item";
+
+        const category = log.category || "dating";
+        const isGym = category === "gym";
+
+        // Notes
+        const notes = isGym ? (log.gymNotes || log.notes || "") : (log.notes || "");
+
+        // Meta line
+        let metaHtml = "";
+
+        if (isGym) {
+          const workout = log.workoutType || "Workout";
+          const loc = log.gymLocation || log.location || "Gym";
+          const intensity = log.intensity ? `Intensity: ${log.intensity}/10` : "";
+          metaHtml = `
+            <span>${workout}</span>
+            <span>·</span>
+            <span>${loc}</span>
+            ${intensity ? `<span>·</span><span>${intensity}</span>` : ""}
+            <span>·</span>
+            <span>${timeAgo(log.timestamp)}</span>
+          `;
+        } else {
+          metaHtml = `
+            <span>Approach #${log.approachNumber ?? "—"}</span>
+            <span>·</span>
+            <span>${log.location || "Field"}</span>
+            <span>·</span>
+            <span>Confidence: ${log.confidence ? log.confidence + "/10" : "—"}</span>
+            <span>·</span>
+            <span>${timeAgo(log.timestamp)}</span>
+          `;
+        }
+
+        item.innerHTML = `
+          <div class="log-header">
+            <span class="log-handle">${getHandle(log.id)}</span>
+            <span class="${getBadgeClass(log.outcome)}">${getBadgeLabel(log.outcome)}</span>
+          </div>
+          <div class="log-notes">${notes}</div>
+          <div class="log-meta">
+            ${metaHtml}
+          </div>
+        `;
+
+        container.appendChild(item);
+      });
+    }
+
+    function renderStats(logs) {
+  const stats = computeStats(logs);
+  
+  document.getElementById("stat-today").textContent = stats.todayCount;
+  document.getElementById("stat-today-meta").textContent =
+    stats.todayCount === 0
+      ? "No one's stepped into the arena yet. Be first."
+      : stats.todayCount === 1
+      ? `1 man chose action over fear today. ${stats.todayReps} rep${stats.todayReps !== 1 ? 's' : ''} logged.`
+      : `${stats.todayCount} men in the field right now. ${stats.todayReps} reps logged.`;
+
+  document.getElementById("stat-week").textContent = stats.weekCount;
+  
+  // Render streak
+  const streakEmoji = stats.streak >= 30 ? "🔥" : stats.streak >= 7 ? "💪" : stats.streak >= 1 ? "⚡" : "";
+  document.getElementById("stat-streak").textContent = stats.streak > 0 ? `${stats.streak} ${streakEmoji}` : "0";
+  
+  let streakText = "";
+  if (stats.streak === 0) {
+    streakText = "No activity yet. Start the streak.";
+  } else if (stats.streak === 1) {
+    streakText = "Day 1. Keep it alive.";
+  } else if (stats.streak < 7) {
+    streakText = `${stats.streak} days strong. Don't break it.`;
+  } else if (stats.streak < 30) {
+    streakText = `${stats.streak} days of action. The brotherhood is moving.`;
+  } else if (stats.streak < 100) {
+    streakText = `${stats.streak} day streak. This is legendary.`;
+  } else {
+    streakText = `${stats.streak} days. Unstoppable.`;
+  }
+  
+  document.getElementById("stat-streak-meta").textContent = streakText;
+}
+
+
+    function showSuccessToast() {
+      const toast = document.createElement('div');
+      toast.className = 'success-toast';
+      toast.textContent = '✓ Rep logged. Keep moving.';
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.animation = 'slideOutToast 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    // Listen for real-time updates from Firebase
+    let allLogs = [];
+    const logsRef = query(ref(db, 'logs'), orderByChild('timestamp'), limitToLast(100));
+    
+    onValue(logsRef, (snapshot) => {
+      allLogs = [];
+      snapshot.forEach((childSnapshot) => {
+        allLogs.push({
+          key: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      
+      renderStats(allLogs);
+      renderLogs(allLogs);
+    });
+
+    // ===== Form mode toggle =====
+    let currentMode = "dating";
+
+    const toggleButtons = document.querySelectorAll(".toggle-btn");
+    const datingFields = document.getElementById("dating-fields");
+    const gymFields = document.getElementById("gym-fields");
+    const formTitle = document.getElementById("form-title");
+    const formHelper = document.getElementById("form-helper");
+
+    function setRequiredForDating(isRequired) {
+      document.getElementById("approachNumber").required = isRequired;
+      document.getElementById("outcome").required = isRequired;
+      document.getElementById("confidence").required = isRequired;
+      document.getElementById("location").required = isRequired;
+      document.getElementById("notes").required = isRequired;
+    }
+
+    function setRequiredForGym(isRequired) {
+      document.getElementById("workoutType").required = isRequired;
+      document.getElementById("gymOutcome").required = isRequired;
+      document.getElementById("intensity").required = isRequired;
+      document.getElementById("gymLocation").required = isRequired;
+      document.getElementById("gymNotes").required = isRequired;
+    }
+
+    toggleButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const mode = btn.getAttribute("data-mode");
+        if (mode === currentMode) return;
+
+        currentMode = mode;
+
+        toggleButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (currentMode === "dating") {
+          datingFields.style.display = "";
+          gymFields.style.display = "none";
+          setRequiredForDating(true);
+          setRequiredForGym(false);
+          formTitle.textContent = "You just took action. Log it.";
+          formHelper.textContent = "Every rep you log is proof you're not invisible anymore. The brotherhood sees you.";
+        } else {
+          datingFields.style.display = "none";
+          gymFields.style.display = "";
+          setRequiredForDating(false);
+          setRequiredForGym(true);
+          formTitle.textContent = "You just put in work. Log it.";
+          formHelper.textContent = "Every workout you log is another brick in the body and mind you're building.";
+        }
+      });
+    });
+
+    // Initialize required states correctly
+    setRequiredForDating(true);
+    setRequiredForGym(false);
+
+    // Form submission
+    document.getElementById("heartbeat-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById("submit-btn");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Logging...";
+
+      // Generate simple user ID (device fingerprint)
+      const getUserId = () => {
+        let userId = localStorage.getItem('heartbeat_user_id');
+        if (!userId) {
+          userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('heartbeat_user_id', userId);
+        }
+        return userId;
+      };
+
+      const baseLog = {
+        id: Date.now(),
+        userId: getUserId(),
+        timestamp: Date.now(),
+        category: currentMode,
+        // Silent tracking for future analysis
+        device: navigator.userAgent,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        screen: `${window.screen.width}x${window.screen.height}`
+      };
+
+      let newLog = { ...baseLog };
+
+      if (currentMode === "dating") {
+        const approachNumber = parseInt(document.getElementById("approachNumber").value, 10);
+        const confidence = parseInt(document.getElementById("confidence").value, 10);
+        const notes = document.getElementById("notes").value.trim();
+        const location = document.getElementById("location").value.trim();
+        const outcome = document.getElementById("outcome").value;
+
+        // Basic validation
+        if (approachNumber < 1 || approachNumber > 100) {
+          alert("Approach number should be between 1-100");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        if (confidence < 1 || confidence > 10) {
+          alert("Confidence should be 1-10");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        if (notes.length < 10) {
+          alert("Add a quick note about what happened (at least 10 characters)");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        newLog = {
+          ...newLog,
+          approachNumber,
+          outcome,
+          confidence,
+          location,
+          notes
+        };
+      } else {
+        // GYM MODE
+        const workoutType = document.getElementById("workoutType").value.trim();
+        const outcome = document.getElementById("gymOutcome").value;
+        const intensity = parseInt(document.getElementById("intensity").value, 10);
+        const gymLocation = document.getElementById("gymLocation").value.trim();
+        const gymNotes = document.getElementById("gymNotes").value.trim();
+
+        if (!workoutType) {
+          alert("Add what you trained (push, pull, legs, etc.)");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        if (intensity < 1 || intensity > 10 || isNaN(intensity)) {
+          alert("Intensity should be 1-10");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        if (!gymLocation) {
+          alert("Add where you trained (gym, home, park...)");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        if (gymNotes.length < 10) {
+          alert("Add a quick note about what you did (at least 10 characters)");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Log Rep";
+          return;
+        }
+
+        newLog = {
+          ...newLog,
+          outcome,
+          workoutType,
+          intensity,
+          gymLocation,
+          gymNotes,
+          // For backward compatibility if you ever reuse in stats
+          location: gymLocation,
+          notes: gymNotes
+        };
+      }
+
+      try {
+        await push(ref(db, 'logs'), newLog);
+        showSuccessToast();
+        e.target.reset();
+        // Reset mode to current visual mode (so required attrs stay right)
+        if (currentMode === "dating") {
+          setRequiredForDating(true);
+          setRequiredForGym(false);
+        } else {
+          setRequiredForDating(false);
+          setRequiredForGym(true);
+        }
+      } catch (error) {
+        console.error("Error saving log:", error);
+        alert("Failed to save log. Please try again.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Log Rep";
+      }
+    });
+  </script>
+</body>
+</html>

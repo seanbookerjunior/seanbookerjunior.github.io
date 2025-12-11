@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ELVYN Gothic Tee | ELVYN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand">
+        <img src="../images/logo.jpg" alt="ELVYN logo" class="brand-logo" />
+        <span class="brand-text">ELVYN</span>
+      </a>
+
+      <nav>
+        <ul class="nav">
+          <li><a href="../system.html">System</a></li>
+          <li><a href="../coaching.html">Coaching</a></li>
+          <li><a href="../community.html">Community</a></li>
+          <li><a href="../shop.html" class="active">Shop</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- Back link -->
+        <p style="font-size:0.8rem;margin-bottom:1rem;">
+          <a href="../shop.html" style="color:#9ca3af;text-decoration:none;">← Back to shop</a>
+        </p>
+
+        <div class="grid-two">
+          <!-- LEFT: Image -->
+          <div>
+            <div class="card" style="padding:1.2rem;">
+              <img
+                src="../images/gothicshirt2.jpg"
+                alt="ELVYN Gothic Tee"
+                style="width:100%;border-radius:1rem;"
+              />
+            </div>
+          </div>
+
+          <!-- RIGHT: Details -->
+          <aside>
+            <header class="page-header">
+              <p class="page-kicker">Drop 01 · Essential</p>
+              <h1 class="page-title">ELVYN Gothic Tee</h1>
+              <p class="page-subtitle">$50.00 USD</p>
+            </header>
+
+            <!-- BUY BUTTON – add your Stripe link -->
+            <p style="margin-bottom:0.6rem;">
+              <a
+                href="https://buy.stripe.com/fZu9AS6cy6VK1ereHNbQY06"
+                class="btn btn-primary"
+              >
+                Buy Now
+              </a>
+            </p>
+            <p style="font-size:0.8rem;color:#9ca3af;margin-bottom:1.6rem;">
+              Secure checkout powered by Stripe. Made to order and shipped in 5–9 business days.
+            </p>
+
+            <!-- Description -->
+            <div class="section" style="margin-bottom:1.5rem;">
+              <h2 class="card-title">The shadow piece.</h2>
+              <p style="font-size:0.92rem;color:#d1d5db;margin-top:0.4rem;">
+                The ELVYN Gothic Tee takes the brand wordmark and gives it a darker, more
+                aggressive feel. Black on black styling with a sharp gothic font — this is the tee
+                you throw on when you want to look locked in without saying a word.
+              </p>
+            </div>
+
+            <!-- Fit & Details -->
+            <div class="section" style="margin-bottom:1.5rem;">
+              <h3 class="card-title">Fit & details</h3>
+              <p style="font-size:0.9rem;color:#d1d5db;margin-top:0.4rem;">
+                • Color: Black<br />
+                • ELVYN gothic wordmark front print<br />
+                • Premium cotton blend, soft but structured<br />
+                • Athletic, slightly relaxed fit<br />
+                • True to size — size up for an oversized look
+              </p>
+            </div>
+
+            <!-- Shipping -->
+            <div class="section" style="margin-bottom:1.5rem;">
+              <h3 class="card-title">Shipping</h3>
+              <p style="font-size:0.9rem;color:#d1d5db;margin-top:0.4rem;">
+                Shipping available to the United States and Canada. Each piece is made to order
+                through our fulfillment partner. Most orders ship within 5–9 business days.
+              </p>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="section">
+              <h3 class="card-title">Wearing ELVYN</h3>
+              <p style="font-size:0.9rem;color:#d1d5db;margin-top:0.4rem;">
+                The Gothic Tee is for the days you move in silence. No loud graphics — just a clear
+                signal to the people who know what ELVYN stands for: discipline, presence, and a man
+                who’s not hiding from his potential.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span id="year"></span> ELVYN.</span>
+      <span>Wear the work.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
