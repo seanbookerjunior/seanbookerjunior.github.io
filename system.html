@@ -6,23 +6,31 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
+    <header class="site-header">
     <div class="container nav-inner">
-      <a href="index.html" class="brand">
+      <a href="index.html" class="brand" style="margin-left: 1rem;">
         <img src="images/logo.jpg" alt="ELVYN logo" class="brand-logo" />
         <span class="brand-text">ELVYN</span>
       </a>
 
-      <nav>
-        <ul class="nav">
-          <li><a href="system.html" class="active">System</a></li>
-          <li><a href="coaching.html">Coaching</a></li>
-          <li><a href="community.html">Community</a></li>
-          <li><a href="heartbeat.html">Heartbeat</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
+ <nav class="primary-nav">
+      <!-- Hamburger button (mobile only) -->
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Existing nav list -->
+      <ul class="nav">
+        <li><a href="system.html">System</a></li>
+        <li><a href="coaching.html">Coaching</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="heartbeat.html">Heartbeat</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
     </div>
   </header>
 

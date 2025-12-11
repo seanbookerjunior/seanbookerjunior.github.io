@@ -35,21 +35,29 @@
   <!-- ===== Header / Nav ===== -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a href="index.html" class="brand">
+      <a href="index.html" class="brand" style="margin-left: 1rem;">
         <img src="images/logo.jpg" alt="ELVYN logo" class="brand-logo" />
         <span class="brand-text">ELVYN</span>
       </a>
 
- <nav>
-        <ul class="nav">
-          <li><a href="system.html">System</a></li>
-          <li><a href="coaching.html">Coaching</a></li>
-          <li><a href="community.html">Community</a></li>
-          <li><a href="heartbeat.html">Heartbeat</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
+ <nav class="primary-nav">
+      <!-- Hamburger button (mobile only) -->
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Existing nav list -->
+      <ul class="nav">
+        <li><a href="system.html">System</a></li>
+        <li><a href="coaching.html">Coaching</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="heartbeat.html">Heartbeat</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
     </div>
   </header>
 
@@ -122,24 +130,25 @@
 
 
   <!-- ===== PILLARS SECTION ===== -->
-  <section class="section" style="margin-top: 2rem;">
-    <div class="container">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
-        <div class="card">
-          <h2 class="card-title">Gym Discipline</h2>
-          <p>Build a body that changes how the world responds to you.</p>
-        </div>
-        <div class="card">
-          <h2 class="card-title">Social Confidence</h2>
-          <p>Learn presence, communication, and frame.</p>
-        </div>
-        <div class="card">
-          <h2 class="card-title">Lifestyle Identity</h2>
-          <p>Live a life you're proud to introduce.</p>
-        </div>
+<section class="section" style="margin-top: 2rem;">
+  <div class="container">
+    <div class="pillars-grid">
+      <div class="card">
+        <h2 class="card-title">Gym Discipline</h2>
+        <p>Build a body that changes how the world responds to you.</p>
+      </div>
+      <div class="card">
+        <h2 class="card-title">Social Confidence</h2>
+        <p>Learn presence, communication, and frame.</p>
+      </div>
+      <div class="card">
+        <h2 class="card-title">Lifestyle Identity</h2>
+        <p>Live a life you're proud to introduce.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
 
 
@@ -274,6 +283,26 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('nav-open');
+      navMenu.classList.toggle('nav-open');
+    });
+
+    // optional: close menu when a link is tapped
+    navMenu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        navToggle.classList.remove('nav-open');
+        navMenu.classList.remove('nav-open');
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
 

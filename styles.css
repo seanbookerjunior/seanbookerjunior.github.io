@@ -111,6 +111,89 @@ body {
   width: 100%;
 }
 
+/* base nav */
+.primary-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* hamburger button – hidden on desktop by default */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  /* border: 1px solid rgba(148, 163, 184, 0.5); */
+  background: rgba(15, 23, 42, 0.9);
+  cursor: pointer;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  z-index: 9999;   
+}
+
+.nav-toggle span {
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* animate into an “X” when open */
+.nav-toggle.nav-open span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+.nav-toggle.nav-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.nav-open span:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* mobile menu styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 64px;           /* adjust to match header height */
+    right: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(15, 23, 42, 0.98);
+    border-radius: 1rem;
+    border: 1px solid rgba(31, 41, 55, 0.9);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.8);
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 50;
+  }
+
+  .nav li {
+    margin: 0;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+}
+
+
 /* ===== Hero / Main Layout ===== */
 main {
   padding: 3rem 0 4rem;
@@ -322,3 +405,32 @@ main {
     order: -1;
   }
 }
+
+/* Desktop / tablet: 3-column grid */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+/* Mobile: horizontal scroll */
+@media (max-width: 768px) {
+  .pillars-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pillars-grid::-webkit-scrollbar {
+    display: none; /* hide scrollbar on mobile */
+  }
+
+  .pillars-grid .card {
+    flex: 0 0 75vw;       /* each card ~75% of screen width */
+    scroll-snap-align: start;
+  }
+}
+
