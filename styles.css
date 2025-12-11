@@ -403,7 +403,7 @@ main {
   }
 
   .hero-card {
-    order: -1;
+    order: 0;
   }
 }
 
