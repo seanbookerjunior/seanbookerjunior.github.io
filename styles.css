@@ -435,3 +435,34 @@ main {
   }
 }
 
+/* hide icons on desktop */
+.mobile-social-icons {
+  display: none;
+}
+
+/* show only on mobile */
+@media (max-width: 768px) {
+  .mobile-social-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-right: auto; /* pushes everything else to the right */
+  }
+
+  .mobile-social-icons img {
+    margin-top:0.5rem;
+    width: 22px;
+    height: 22px;
+    filter: invert(90%);
+}
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+
