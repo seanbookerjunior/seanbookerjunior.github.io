@@ -146,16 +146,8 @@ body {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* animate into an “X” when open */
-.nav-toggle.nav-open span:nth-child(1) {
-  transform: translateY(4px) rotate(45deg);
-}
-.nav-toggle.nav-open span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle.nav-open span:nth-child(3) {
-  transform: translateY(-4px) rotate(-45deg);
-}
+
+
 
 /* mobile menu styles */
 @media (max-width: 768px) {
@@ -391,6 +383,11 @@ main {
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+    .nav-toggle {
+    display: flex;
+    margin-right: 1rem;      /* <-- this pulls it away from the edge */
+  }
+
   .nav {
     gap: 1rem;
     font-size: 0.7rem;

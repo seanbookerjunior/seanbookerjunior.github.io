@@ -149,5 +149,25 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
+  <script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('nav-open');
+      navMenu.classList.toggle('nav-open');
+    });
+
+    // optional: close menu when a link is tapped
+    navMenu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        navToggle.classList.remove('nav-open');
+        navMenu.classList.remove('nav-open');
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
