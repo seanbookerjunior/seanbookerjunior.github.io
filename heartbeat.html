@@ -474,6 +474,95 @@
         to { transform: translateY(0); opacity: 1; }
       }
     }
+
+    /* Lock overlay */
+.hb-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(2, 6, 23, 0.68);
+  backdrop-filter: blur(10px);
+}
+
+.hb-lock-card {
+  width: min(640px, 100%);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.hb-lock-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(226, 232, 240, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.hb-lock-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hb-lock-sub {
+  color: rgba(203, 213, 225, 0.9);
+  line-height: 1.5;
+  margin: 0 auto 1rem;
+  max-width: 52ch;
+}
+
+.hb-lock-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.hb-lock-foot {
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+/* Dim + disable the page behind overlay */
+body.hb-locked {
+  overflow: hidden;
+}
+
+/* Toast */
+.hb-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 10000;
+  padding: 0.75rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: rgba(226, 232, 240, 0.95);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.hb-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
   </style>
 </head>
 
@@ -681,6 +770,33 @@
       </div>
     </section>
   </main>
+
+  <!-- Coming Soon Overlay -->
+<div id="hb-lock" class="hb-lock" aria-hidden="false">
+  <div class="hb-lock-card">
+    <div class="hb-lock-pill">🔒 THE HEARTBEAT</div>
+    <h1 class="hb-lock-title">Coming Soon</h1>
+    <p class="hb-lock-sub">
+      The Heartbeat is getting upgraded into something fun.
+      Check back soon — or get notified when it drops.
+    </p>
+
+    <div class="hb-lock-actions">
+      <button id="hb-toast-btn" class="btn btn-primary">Show What’s Coming</button>
+      <a class="btn btn-secondary" href="community.html">Join the Discord</a>
+      <a class="btn btn-secondary" href="index.html">Return Home</a>
+    </div>
+
+    <div class="hb-lock-foot">
+      Tip: You’ll be able to submit updates, build streaks, and climb weekly leaderboards.
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="hb-toast" class="hb-toast" role="status" aria-live="polite">
+  🚧 Heartbeat v2 is loading: weekly resets, streaks, and a leaderboard.
+</div>
 
   <!-- ===== Footer (matches other pages) ===== -->
   <footer class="site-footer">
@@ -927,40 +1043,17 @@
     let allLogs = [];
     const logsRef = query(ref(db, 'logs'), orderByChild('timestamp'), limitToLast(100));
 
-      function renderPersonalStats(allLogs) {
-        const userId = getLocalUserId();
-        const myLogs = allLogs.filter(l => l.userId === userId);
-
-        const now = Date.now();
-        const dayMs = 1000 * 60 * 60 * 24;
-
-        const total = myLogs.length;
-        const today = myLogs.filter(l => (now - l.timestamp) <= dayMs).length;
-        const week = myLogs.filter(l => (now - l.timestamp) <= dayMs * 7).length;
-        const streak = calculateUserStreak(myLogs);
-
-        const setText = (id, val) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = val;
-        };
-
-        setText("p-total", total);
-        setText("p-today", today);
-        setText("p-week", week);
-        setText("p-streak", streak);
-      }
-
-
+     
     onValue(logsRef, (snapshot) => {
-  allLogs = [];
-  snapshot.forEach((childSnapshot) => {
-    allLogs.push({ key: childSnapshot.key, ...childSnapshot.val() });
-  });
+      allLogs = [];
+      snapshot.forEach((childSnapshot) => {
+        allLogs.push({ key: childSnapshot.key, ...childSnapshot.val() });
+      });
 
-  renderStats(allLogs);
-  renderLogs(allLogs);
-  renderPersonalStats(allLogs); // ✅ ADD THIS
-});
+      renderStats(allLogs);
+      renderLogs(allLogs);
+
+    });
 
 
     // ===== Form mode toggle =====
@@ -1155,5 +1248,45 @@
       });
     }
   </script>
+
+
+<script>
+  (function () {
+    const LOCKED = true; // flip to false when you’re ready to launch
+    const lockEl = document.getElementById("hb-lock");
+    const toastEl = document.getElementById("hb-toast");
+    const toastBtn = document.getElementById("hb-toast-btn");
+
+    function showToast(msg) {
+      if (msg) toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(window.__hbToastTimer);
+      window.__hbToastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+    }
+
+    if (LOCKED) {
+      document.body.classList.add("hb-locked");
+      lockEl.style.display = "grid";
+
+      // Optional: show a toast automatically on load
+      setTimeout(() => showToast(), 450);
+
+      // Show toast on button click
+      toastBtn?.addEventListener("click", () => {
+        showToast("🚧 Heartbeat v2: weekly resets, streaks, leaderboard, and better feed.");
+      });
+
+      // Prevent underlying clicks if overlay somehow isn’t blocking
+      document.addEventListener("click", (e) => {
+        if (!lockEl.contains(e.target)) return;
+      }, true);
+    } else {
+      document.body.classList.remove("hb-locked");
+      lockEl.style.display = "none";
+    }
+  })();
+</script>
+
+
 </body>
 </html>
