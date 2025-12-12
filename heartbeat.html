@@ -10,6 +10,64 @@
 
   <!-- Heartbeat-specific styling (no global resets, no body/container overrides) -->
   <style>
+    /* Personal stats */
+    .personal-stats {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 0.75rem;
+      padding: 1rem;
+    }
+
+    .personal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .personal-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .personal-sub {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .personal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .personal-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 0.75rem;
+      padding: 0.9rem;
+    }
+
+    .personal-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .personal-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+    }
+
     .heartbeat-header {
       text-align: center;
       margin-bottom: 3rem;
@@ -67,12 +125,48 @@
       margin-bottom: 3rem;
     }
 
+    /* =========================
+       ✅ LIVE FEED SCROLL FIX
+       ========================= */
+
+    /* Two-column grid */
     .heartbeat-main-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       margin-bottom: 3rem;
+      align-items: stretch;
     }
+
+    /* Allow grid children to shrink (CRITICAL for scroll) */
+    .heartbeat-main-grid > .card {
+      min-height: 0;
+    }
+
+    /* Live feed card is bounded so the page won't grow infinitely */
+    .live-feed-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: min(72vh, 760px); /* <- this is the ceiling that makes scroll work */
+    }
+
+    /* Log list fills remaining height and becomes the scroll area */
+    .live-feed-card .log-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 0.5rem;
+
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ========================= */
 
     .stat-number {
       font-size: 2.5rem;
@@ -121,29 +215,18 @@
       color: #38bdf8;
     }
 
-    .log-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-height: 600px;
-      overflow-y: auto;
-      padding-right: 0.5rem;
-    }
-
+    /* Scrollbar styling stays */
     .log-list::-webkit-scrollbar {
       width: 6px;
     }
-
     .log-list::-webkit-scrollbar-track {
       background: rgba(15, 23, 42, 0.5);
       border-radius: 3px;
     }
-
     .log-list::-webkit-scrollbar-thumb {
       background: rgba(148, 163, 184, 0.3);
       border-radius: 3px;
     }
-
     .log-list::-webkit-scrollbar-thumb:hover {
       background: rgba(148, 163, 184, 0.5);
     }
@@ -158,14 +241,8 @@
     }
 
     @keyframes slideInLog {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .log-item:hover {
@@ -299,9 +376,7 @@
       box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
     }
 
-    .btn:active {
-      transform: translateY(0);
-    }
+    .btn:active { transform: translateY(0); }
 
     .btn:disabled {
       opacity: 0.5;
@@ -324,25 +399,13 @@
     }
 
     @keyframes slideInToast {
-      from {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(400px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
     @keyframes slideOutToast {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateX(400px);
-        opacity: 0;
-      }
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(400px); opacity: 0; }
     }
 
     .error-text {
@@ -378,9 +441,7 @@
       gap: 0.35rem;
     }
 
-    .toggle-btn span.emoji {
-      font-size: 1rem;
-    }
+    .toggle-btn span.emoji { font-size: 1rem; }
 
     .toggle-btn.active {
       background: linear-gradient(135deg, #3b82f6, #2563eb);
@@ -394,17 +455,13 @@
     }
 
     @media (max-width: 768px) {
-      .heartbeat-main-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+      .heartbeat-main-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .heartbeat-title { font-size: 2rem; }
 
-      .heartbeat-title {
-        font-size: 2rem;
-      }
+      /* On mobile, don't force the tall card, just cap the feed list */
+      .live-feed-card { height: auto; }
+      .live-feed-card .log-list { max-height: 60vh; }
 
       .success-toast {
         left: 1rem;
@@ -413,29 +470,24 @@
       }
 
       @keyframes slideInToast {
-        from {
-          transform: translateY(-100px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
+        from { transform: translateY(-100px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
       }
     }
   </style>
 </head>
+
 <body>
   <!-- ===== Site Header / Nav (matches other pages) ===== -->
-    <header class="site-header">
+  <header class="site-header">
     <div class="container nav-inner">
       <a href="index.html" class="brand" style="margin-left: 1rem;">
         <img src="images/logo.jpg" alt="ELVYN logo" class="brand-logo" />
         <span class="brand-text">ELVYN</span>
       </a>
 
-       <div class="mobile-social-icons" style="margin-left: 1rem;">
-        <a href="https://tiktok.com/@seanwavy" target="_blank" >
+      <div class="mobile-social-icons" style="margin-left: 1rem;">
+        <a href="https://tiktok.com/@seanwavy" target="_blank">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" />
         </a>
         <a href="https://www.instagram.com/seanwavy/" target="_blank">
@@ -446,25 +498,20 @@
         </a>
       </div>
 
+      <nav class="primary-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
 
- <nav class="primary-nav">
-      <!-- Hamburger button (mobile only) -->
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <!-- Existing nav list -->
-      <ul class="nav">
-        <li><a href="system.html">System</a></li>
-        <li><a href="coaching.html">Coaching</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="heartbeat.html">Heartbeat</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
+        <ul class="nav">
+          <li><a href="system.html">System</a></li>
+          <li><a href="coaching.html">Coaching</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="heartbeat.html">Heartbeat</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -478,9 +525,7 @@
             <span>The Field is Live</span>
           </div>
           <h1 class="heartbeat-title">The Heartbeat</h1>
-          <p class="subtitle">
-            Real men. Real approaches. Real reps. Real improvement.
-          </p>
+          <p class="subtitle">Real men. Real approaches. Real reps. Real improvement.</p>
           <p class="subtitle">This is what choosing action over fear looks like.</p>
         </div>
 
@@ -505,7 +550,8 @@
         </div>
 
         <div class="heartbeat-main-grid">
-          <div class="card">
+          <!-- ✅ add live-feed-card so the scroll rules target correctly -->
+          <div class="card live-feed-card">
             <h2 class="card-title">Live Feed</h2>
             <p class="helper-text">
               Every line is someone who chose to move. Anonymous warriors building proof.
@@ -519,20 +565,16 @@
               Every rep you log is proof you're not invisible anymore. The brotherhood sees you.
             </p>
 
-            <!-- Toggle -->
             <div class="form-toggle">
               <button type="button" class="toggle-btn active" data-mode="dating">
-                <span class="emoji">💬</span>
-                <span>Dating Reps</span>
+                <span class="emoji">💬</span><span>Dating Reps</span>
               </button>
               <button type="button" class="toggle-btn" data-mode="gym">
-                <span class="emoji">💪</span>
-                <span>Gym Reps</span>
+                <span class="emoji">💪</span><span>Gym Reps</span>
               </button>
             </div>
 
             <form id="heartbeat-form">
-              <!-- DATING FIELDS -->
               <div id="dating-fields">
                 <div class="form-grid">
                   <div class="form-field">
@@ -566,7 +608,6 @@
                 </div>
               </div>
 
-              <!-- GYM FIELDS -->
               <div id="gym-fields" style="display:none;">
                 <div class="form-grid">
                   <div class="form-field">
@@ -601,15 +642,42 @@
               </div>
 
               <div class="honor-code">
-                <strong>The Brotherhood Code:</strong> Every log here is on your honor. 
-                We trust you. Don't log reps you didn't take. Don't betray the community. 
+                <strong>The Brotherhood Code:</strong> Every log here is on your honor.
+                We trust you. Don't log reps you didn't take. Don't betray the community.
                 Real progress only comes from real work.
               </div>
 
               <button type="submit" class="btn" id="submit-btn" style="margin-top: 1rem;">Log Rep</button>
             </form>
+
+            <div class="personal-stats" style="margin-bottom: 1rem; margin-top: 1rem;">
+              <div class="personal-header">
+                <div><div class="personal-label">Your Stats</div></div>
+              </div>
+
+              <div class="personal-grid">
+                <div class="personal-item">
+                  <div class="personal-num" id="p-total">0</div>
+                  <div class="personal-meta">Total reps</div>
+                </div>
+                <div class="personal-item">
+                  <div class="personal-num" id="p-today">0</div>
+                  <div class="personal-meta">Today</div>
+                </div>
+                <div class="personal-item">
+                  <div class="personal-num" id="p-week">0</div>
+                  <div class="personal-meta">Last 7 days</div>
+                </div>
+                <div class="personal-item">
+                  <div class="personal-num" id="p-streak">0</div>
+                  <div class="personal-meta">Current streak</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
       </div>
     </section>
   </main>
@@ -618,53 +686,48 @@
   <footer class="site-footer">
     <div class="container">
       <span>© <span id="year"></span> ELVYN.</span>
-<div style="display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap;">
 
-  <a href="https://tiktok.com/@seanwavy" target="_blank"
-     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg"
-         style="width:18px; height:18px; filter:invert(80%);" alt="TikTok" />
-    <span>@seanwavy</span>
-  </a>
+      <div style="display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap;">
+        <a href="https://tiktok.com/@seanwavy" target="_blank"
+           style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg"
+               style="width:18px; height:18px; filter:invert(80%);" alt="TikTok" />
+          <span>@seanwavy</span>
+        </a>
 
-  <a href="https://discord.gg/WXKfqwEwj6" target="_blank"
-     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg"
-         style="width:18px; height:18px; filter:invert(80%);" alt="Discord" />
-    <span>Discord</span>
-  </a>
+        <a href="https://discord.gg/WXKfqwEwj6" target="_blank"
+           style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg"
+               style="width:18px; height:18px; filter:invert(80%);" alt="Discord" />
+          <span>Discord</span>
+        </a>
 
-  <a href="https://www.youtube.com/@seanwavy" target="_blank"
-     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"
-         style="width:18px; height:18px; filter:invert(80%);" alt="YouTube" />
-    <span>YouTube</span>
-  </a>
+        <a href="https://www.youtube.com/@seanwavy" target="_blank"
+           style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"
+               style="width:18px; height:18px; filter:invert(80%);" alt="YouTube" />
+          <span>YouTube</span>
+        </a>
 
-  <a href="https://www.instagram.com/seanwavy/" target="_blank"
-     style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"
-         style="width:18px; height:18px; filter:invert(80%);" alt="Instagram" />
-    <span>@seanwavy</span>
-  </a>
-
-</div>
-
+        <a href="https://www.instagram.com/seanwavy/" target="_blank"
+           style="display:flex; align-items:center; gap:0.4rem; color:#9ca3af; text-decoration:none; font-size:0.85rem;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"
+               style="width:18px; height:18px; filter:invert(80%);" alt="Instagram" />
+          <span>@seanwavy</span>
+        </a>
+      </div>
     </div>
   </footer>
 
   <script>
-    // footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
   <!-- ===== Firebase Heartbeat Logic ===== -->
   <script type="module">
-    // Firebase imports
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
     import { getDatabase, ref, push, onValue, query, orderByChild, limitToLast } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 
-    // Initialize Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAnJIYEvLmyQX0FWdirTlvlfcVKgGNntfg",
       authDomain: "the-heartbeat---elvyn.firebaseapp.com",
@@ -678,9 +741,8 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Anonymous handle generation
     const handles = [
-      "Wanderer", "Ghost", "Nomad", "Shadow", "Cipher", 
+      "Wanderer", "Ghost", "Nomad", "Shadow", "Cipher",
       "Vanguard", "Maverick", "Rogue", "Seeker", "Outlaw",
       "Phantom", "Titan", "Sentinel", "Hunter", "Warrior"
     ];
@@ -700,6 +762,36 @@
       if (diffHours < 24) return diffHours + "h ago";
       const diffDays = Math.floor(diffHours / 24);
       return diffDays + "d ago";
+    }
+
+    function calculateStreak(logs) {
+      if (!logs.length) return 0;
+      const sorted = [...logs].sort((a, b) => a.timestamp - b.timestamp);
+
+      const daysWithActivity = new Set();
+      sorted.forEach(log => daysWithActivity.add(new Date(log.timestamp).toDateString()));
+
+      const uniqueDays = Array.from(daysWithActivity).sort((a, b) =>
+        new Date(a) - new Date(b)
+      );
+
+      let streak = 0;
+      const today = new Date().toDateString();
+      let checkDate = new Date();
+
+      if (!uniqueDays.includes(today)) {
+        checkDate.setDate(checkDate.getDate() - 1);
+      }
+
+      while (true) {
+        const dateStr = checkDate.toDateString();
+        if (uniqueDays.includes(dateStr)) {
+          streak++;
+          checkDate.setDate(checkDate.getDate() - 1);
+        } else break;
+      }
+
+      return streak;
     }
 
     function computeStats(logs) {
@@ -725,52 +817,9 @@
 
       const todayCount = todayUsers.size;
       const weekCount = weekLogs.length;
-
-      // Calculate current streak
       const streak = calculateStreak(logs);
 
       return { todayCount, todayReps: todayLogs.length, weekCount, streak };
-    }
-
-    function calculateStreak(logs) {
-      if (!logs.length) return 0;
-
-      // Sort logs by timestamp (oldest first)
-      const sorted = [...logs].sort((a, b) => a.timestamp - b.timestamp);
-      
-      // Get unique days with activity
-      const daysWithActivity = new Set();
-      sorted.forEach(log => {
-        const day = new Date(log.timestamp).toDateString();
-        daysWithActivity.add(day);
-      });
-
-      const uniqueDays = Array.from(daysWithActivity).sort((a, b) => 
-        new Date(a) - new Date(b)
-      );
-
-      // Count consecutive days backwards from today
-      let streak = 0;
-      const today = new Date().toDateString();
-      let checkDate = new Date();
-
-      // Check if there's activity today, if not check yesterday
-      if (!uniqueDays.includes(today)) {
-        checkDate.setDate(checkDate.getDate() - 1);
-      }
-
-      // Count backwards from most recent activity
-      while (true) {
-        const dateStr = checkDate.toDateString();
-        if (uniqueDays.includes(dateStr)) {
-          streak++;
-          checkDate.setDate(checkDate.getDate() - 1);
-        } else {
-          break;
-        }
-      }
-
-      return streak;
     }
 
     function getBadgeClass(outcome) {
@@ -787,7 +836,7 @@
 
     function renderLogs(logs) {
       const container = document.getElementById("log-list");
-      
+
       if (!logs.length) {
         container.innerHTML = '<p class="helper-text">No reps logged yet. Be the first.</p>';
         return;
@@ -802,33 +851,23 @@
 
         const category = log.category || "dating";
         const isGym = category === "gym";
-
-        // Notes
         const notes = isGym ? (log.gymNotes || log.notes || "") : (log.notes || "");
 
-        // Meta line
         let metaHtml = "";
-
         if (isGym) {
           const workout = log.workoutType || "Workout";
           const loc = log.gymLocation || log.location || "Gym";
           const intensity = log.intensity ? `Intensity: ${log.intensity}/10` : "";
           metaHtml = `
-            <span>${workout}</span>
-            <span>·</span>
-            <span>${loc}</span>
+            <span>${workout}</span><span>·</span><span>${loc}</span>
             ${intensity ? `<span>·</span><span>${intensity}</span>` : ""}
-            <span>·</span>
-            <span>${timeAgo(log.timestamp)}</span>
+            <span>·</span><span>${timeAgo(log.timestamp)}</span>
           `;
         } else {
           metaHtml = `
-            <span>Approach #${log.approachNumber ?? "—"}</span>
-            <span>·</span>
-            <span>${log.location || "Field"}</span>
-            <span>·</span>
-            <span>Confidence: ${log.confidence ? log.confidence + "/10" : "—"}</span>
-            <span>·</span>
+            <span>Approach #${log.approachNumber ?? "—"}</span><span>·</span>
+            <span>${log.location || "Field"}</span><span>·</span>
+            <span>Confidence: ${log.confidence ? log.confidence + "/10" : "—"}</span><span>·</span>
             <span>${timeAgo(log.timestamp)}</span>
           `;
         }
@@ -839,9 +878,7 @@
             <span class="${getBadgeClass(log.outcome)}">${getBadgeLabel(log.outcome)}</span>
           </div>
           <div class="log-notes">${notes}</div>
-          <div class="log-meta">
-            ${metaHtml}
-          </div>
+          <div class="log-meta">${metaHtml}</div>
         `;
 
         container.appendChild(item);
@@ -849,40 +886,31 @@
     }
 
     function renderStats(logs) {
-  const stats = computeStats(logs);
-  
-  document.getElementById("stat-today").textContent = stats.todayCount;
-  document.getElementById("stat-today-meta").textContent =
-    stats.todayCount === 0
-      ? "No one's stepped into the arena yet. Be first."
-      : stats.todayCount === 1
-      ? `1 man chose action over fear today. ${stats.todayReps} rep${stats.todayReps !== 1 ? 's' : ''} logged.`
-      : `${stats.todayCount} men in the field right now. ${stats.todayReps} reps logged.`;
+      const stats = computeStats(logs);
 
-  document.getElementById("stat-week").textContent = stats.weekCount;
-  
-  // Render streak
-  const streakEmoji = stats.streak >= 30 ? "🔥" : stats.streak >= 7 ? "💪" : stats.streak >= 1 ? "⚡" : "";
-  document.getElementById("stat-streak").textContent = stats.streak > 0 ? `${stats.streak} ${streakEmoji}` : "0";
-  
-  let streakText = "";
-  if (stats.streak === 0) {
-    streakText = "No activity yet. Start the streak.";
-  } else if (stats.streak === 1) {
-    streakText = "Day 1. Keep it alive.";
-  } else if (stats.streak < 7) {
-    streakText = `${stats.streak} days strong. Don't break it.`;
-  } else if (stats.streak < 30) {
-    streakText = `${stats.streak} days of action. The brotherhood is moving.`;
-  } else if (stats.streak < 100) {
-    streakText = `${stats.streak} day streak. This is legendary.`;
-  } else {
-    streakText = `${stats.streak} days. Unstoppable.`;
-  }
-  
-  document.getElementById("stat-streak-meta").textContent = streakText;
-}
+      document.getElementById("stat-today").textContent = stats.todayCount;
+      document.getElementById("stat-today-meta").textContent =
+        stats.todayCount === 0
+          ? "No one's stepped into the arena yet. Be first."
+          : stats.todayCount === 1
+          ? `1 man chose action over fear today. ${stats.todayReps} rep${stats.todayReps !== 1 ? 's' : ''} logged.`
+          : `${stats.todayCount} men in the field right now. ${stats.todayReps} reps logged.`;
 
+      document.getElementById("stat-week").textContent = stats.weekCount;
+
+      const streakEmoji = stats.streak >= 30 ? "🔥" : stats.streak >= 7 ? "💪" : stats.streak >= 1 ? "⚡" : "";
+      document.getElementById("stat-streak").textContent = stats.streak > 0 ? `${stats.streak} ${streakEmoji}` : "0";
+
+      let streakText = "";
+      if (stats.streak === 0) streakText = "No activity yet. Start the streak.";
+      else if (stats.streak === 1) streakText = "Day 1. Keep it alive.";
+      else if (stats.streak < 7) streakText = `${stats.streak} days strong. Don't break it.`;
+      else if (stats.streak < 30) streakText = `${stats.streak} days of action. The brotherhood is moving.`;
+      else if (stats.streak < 100) streakText = `${stats.streak} day streak. This is legendary.`;
+      else streakText = `${stats.streak} days. Unstoppable.`;
+
+      document.getElementById("stat-streak-meta").textContent = streakText;
+    }
 
     function showSuccessToast() {
       const toast = document.createElement('div');
@@ -896,26 +924,47 @@
       }, 2500);
     }
 
-    // Listen for real-time updates from Firebase
     let allLogs = [];
     const logsRef = query(ref(db, 'logs'), orderByChild('timestamp'), limitToLast(100));
-    
+
+      function renderPersonalStats(allLogs) {
+        const userId = getLocalUserId();
+        const myLogs = allLogs.filter(l => l.userId === userId);
+
+        const now = Date.now();
+        const dayMs = 1000 * 60 * 60 * 24;
+
+        const total = myLogs.length;
+        const today = myLogs.filter(l => (now - l.timestamp) <= dayMs).length;
+        const week = myLogs.filter(l => (now - l.timestamp) <= dayMs * 7).length;
+        const streak = calculateUserStreak(myLogs);
+
+        const setText = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = val;
+        };
+
+        setText("p-total", total);
+        setText("p-today", today);
+        setText("p-week", week);
+        setText("p-streak", streak);
+      }
+
+
     onValue(logsRef, (snapshot) => {
-      allLogs = [];
-      snapshot.forEach((childSnapshot) => {
-        allLogs.push({
-          key: childSnapshot.key,
-          ...childSnapshot.val()
-        });
-      });
-      
-      renderStats(allLogs);
-      renderLogs(allLogs);
-    });
+  allLogs = [];
+  snapshot.forEach((childSnapshot) => {
+    allLogs.push({ key: childSnapshot.key, ...childSnapshot.val() });
+  });
+
+  renderStats(allLogs);
+  renderLogs(allLogs);
+  renderPersonalStats(allLogs); // ✅ ADD THIS
+});
+
 
     // ===== Form mode toggle =====
     let currentMode = "dating";
-
     const toggleButtons = document.querySelectorAll(".toggle-btn");
     const datingFields = document.getElementById("dating-fields");
     const gymFields = document.getElementById("gym-fields");
@@ -944,7 +993,6 @@
         if (mode === currentMode) return;
 
         currentMode = mode;
-
         toggleButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
@@ -966,11 +1014,9 @@
       });
     });
 
-    // Initialize required states correctly
     setRequiredForDating(true);
     setRequiredForGym(false);
 
-    // Form submission
     document.getElementById("heartbeat-form").addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -978,7 +1024,6 @@
       submitBtn.disabled = true;
       submitBtn.textContent = "Logging...";
 
-      // Generate simple user ID (device fingerprint)
       const getUserId = () => {
         let userId = localStorage.getItem('heartbeat_user_id');
         if (!userId) {
@@ -993,7 +1038,6 @@
         userId: getUserId(),
         timestamp: Date.now(),
         category: currentMode,
-        // Silent tracking for future analysis
         device: navigator.userAgent,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         screen: `${window.screen.width}x${window.screen.height}`
@@ -1008,21 +1052,18 @@
         const location = document.getElementById("location").value.trim();
         const outcome = document.getElementById("outcome").value;
 
-        // Basic validation
         if (approachNumber < 1 || approachNumber > 100) {
           alert("Approach number should be between 1-100");
           submitBtn.disabled = false;
           submitBtn.textContent = "Log Rep";
           return;
         }
-
         if (confidence < 1 || confidence > 10) {
           alert("Confidence should be 1-10");
           submitBtn.disabled = false;
           submitBtn.textContent = "Log Rep";
           return;
         }
-
         if (notes.length < 10) {
           alert("Add a quick note about what happened (at least 10 characters)");
           submitBtn.disabled = false;
@@ -1030,16 +1071,8 @@
           return;
         }
 
-        newLog = {
-          ...newLog,
-          approachNumber,
-          outcome,
-          confidence,
-          location,
-          notes
-        };
+        newLog = { ...newLog, approachNumber, outcome, confidence, location, notes };
       } else {
-        // GYM MODE
         const workoutType = document.getElementById("workoutType").value.trim();
         const outcome = document.getElementById("gymOutcome").value;
         const intensity = parseInt(document.getElementById("intensity").value, 10);
@@ -1052,21 +1085,18 @@
           submitBtn.textContent = "Log Rep";
           return;
         }
-
         if (intensity < 1 || intensity > 10 || isNaN(intensity)) {
           alert("Intensity should be 1-10");
           submitBtn.disabled = false;
           submitBtn.textContent = "Log Rep";
           return;
         }
-
         if (!gymLocation) {
           alert("Add where you trained (gym, home, park...)");
           submitBtn.disabled = false;
           submitBtn.textContent = "Log Rep";
           return;
         }
-
         if (gymNotes.length < 10) {
           alert("Add a quick note about what you did (at least 10 characters)");
           submitBtn.disabled = false;
@@ -1081,7 +1111,6 @@
           intensity,
           gymLocation,
           gymNotes,
-          // For backward compatibility if you ever reuse in stats
           location: gymLocation,
           notes: gymNotes
         };
@@ -1091,7 +1120,6 @@
         await push(ref(db, 'logs'), newLog);
         showSuccessToast();
         e.target.reset();
-        // Reset mode to current visual mode (so required attrs stay right)
         if (currentMode === "dating") {
           setRequiredForDating(true);
           setRequiredForGym(false);
@@ -1110,23 +1138,22 @@
   </script>
 
   <script>
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav');
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('nav-open');
-      navMenu.classList.toggle('nav-open');
-    });
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('nav-open');
+        navMenu.classList.toggle('nav-open');
+      });
 
-    // optional: close menu when a link is tapped
-    navMenu.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') {
-        navToggle.classList.remove('nav-open');
-        navMenu.classList.remove('nav-open');
-      }
-    });
-  }
-</script>
+      navMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          navToggle.classList.remove('nav-open');
+          navMenu.classList.remove('nav-open');
+        }
+      });
+    }
+  </script>
 </body>
 </html>
