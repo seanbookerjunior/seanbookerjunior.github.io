@@ -464,5 +464,42 @@ main {
     gap: 1rem;
   }
 
+  .book-split{
+    display:grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .book-cover-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+  }
+
+  .book-cover{
+    width:100%;
+    max-width:220px;
+    border-radius:0.75rem;
+    display:block;
+  }
+
+  /* Mobile behavior */
+  @media (max-width:768px){
+    
+    .book-split{
+      grid-template-columns:1fr;
+    }
+
+    .book-cover{
+      max-width:260px;
+      margin:0 auto;
+    }
+
+    .book-text{
+      text-align:left;
+    }
+  }
+
 
 
