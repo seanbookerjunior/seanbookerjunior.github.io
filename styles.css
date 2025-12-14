@@ -501,5 +501,64 @@ main {
     }
   }
 
+  /* Coaching lock overlay */
+.coach-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(10px);
+}
+
+.coach-lock-card {
+  width: min(620px, 100%);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.coach-lock-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(226, 232, 240, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.coach-lock-title {
+  font-size: 1.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.coach-lock-sub {
+  color: rgba(203, 213, 225, 0.9);
+  line-height: 1.5;
+  margin: 0 auto 1rem;
+  max-width: 48ch;
+}
+
+.coach-lock-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+}
+
+.coach-lock-foot {
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+
 
 

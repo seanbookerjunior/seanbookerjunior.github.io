@@ -46,7 +46,7 @@
 
       <!-- Existing nav list -->
       <ul class="nav">
-        <li><a href="system.html">System</a></li>
+        <li><a href="system.html">E-Book</a></li>
         <li><a href="coaching.html">Coaching</a></li>
         <li><a href="community.html">Community</a></li>
         <li><a href="heartbeat.html">Heartbeat</a></li>
@@ -199,5 +199,42 @@
     });
   }
 </script>
+
+<script>
+  (function () {
+    const COACHING_ACTIVE = false; // flip to true if you ever reopen
+    const lockEl = document.getElementById("coach-lock");
+
+    if (!COACHING_ACTIVE) {
+      document.body.style.overflow = "hidden";
+      lockEl.style.display = "grid";
+    } else {
+      lockEl.style.display = "none";
+    }
+  })();
+</script>
+
+
+<!-- Coaching Inactive Overlay -->
+<div id="coach-lock" class="coach-lock">
+  <div class="coach-lock-card">
+    <div class="coach-lock-pill">PAUSED</div>
+    <h1 class="coach-lock-title">Coaching is by Invitation</h1>
+    <p class="coach-lock-sub">
+      I’m currently not taking on new coaching clients.
+      If you want clarity, direction, or next steps,
+      book a 1:1 call.
+    </p>
+
+    <div class="coach-lock-actions">
+      <a href="https://buy.stripe.com/8x2bJ00Sebc03mzbvBbQY08" class="btn btn-primary">Book a 1:1 Call</a>
+    </div>
+
+    <div class="coach-lock-foot">
+      Ongoing work only happens after a call, if it makes sense.
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
