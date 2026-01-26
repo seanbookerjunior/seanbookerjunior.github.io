@@ -559,6 +559,13 @@ main {
   color: rgba(148, 163, 184, 0.95);
 }
 
+a.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 
 
 
