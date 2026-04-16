@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2S3S47GCPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2S3S47GCPT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELVYN Labs — Coming Soon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/logo.jpg" />
+
+  <style>
+    .labs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .labs-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .labs-brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .labs-brand-text {
+      letter-spacing: 0.22em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .labs-brand-text span {
+      color: #38bdf8;
+    }
+
+    .labs-back {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .labs-back:hover {
+      color: #e5e7eb;
+    }
+
+    .labs-main {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .labs-inner {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .labs-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .labs-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.2rem;
+    }
+
+    .labs-title span {
+      color: #38bdf8;
+    }
+
+    .labs-desc {
+      color: #9ca3af;
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 42ch;
+      margin: 0 auto 2.5rem;
+    }
+
+    .labs-form {
+      display: flex;
+      gap: 0.6rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .labs-input {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 999px;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.88rem;
+      color: #f9fafb;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.18s ease;
+    }
+
+    .labs-input::placeholder {
+      color: #6b7280;
+    }
+
+    .labs-input:focus {
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    .labs-submit {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #f9fafb;
+      border: 1px solid rgba(186, 230, 253, 0.3);
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 14px 45px rgba(2, 132, 199, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .labs-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 55px rgba(2, 132, 199, 0.45);
+    }
+
+    .labs-success {
+      display: none;
+      margin-top: 1.2rem;
+      font-size: 0.88rem;
+      color: #38bdf8;
+      letter-spacing: 0.06em;
+    }
+
+    .labs-fine-print {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #4b5563;
+    }
+
+    @media (max-width: 480px) {
+      .labs-form {
+        flex-direction: column;
+        border-radius: 1.2rem;
+      }
+
+      .labs-input,
+      .labs-submit {
+        border-radius: 999px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="labs-header">
+      <a href="elvyn-labs.html" class="labs-brand">
+        <img src="images/logo.jpg" alt="ELVYN Labs logo" class="labs-brand-logo" />
+        <span class="labs-brand-text">ELVYN <span>Labs</span></span>
+      </a>
+      <a href="index.html" class="labs-back">← All Brands</a>
+    </div>
+  </header>
+
+  <main class="labs-main">
+    <div class="labs-inner">
+      <span class="labs-badge">Coming Soon</span>
+
+      <h1 class="labs-title">
+        Optimize from<br />the inside <span>out</span>.
+      </h1>
+
+      <p class="labs-desc">
+        ELVYN Labs is a biohacking and peptide optimization brand built for men who want to perform at a different level.
+        We're researching, testing, and building protocols that go deeper than the surface — from hormonal health to recovery to cognitive output.
+        Early access members will be the first to know when we launch.
+      </p>
+
+      <form class="labs-form" id="labs-form" novalidate>
+        <input
+          class="labs-input"
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+          autocomplete="email"
+        />
+        <button class="labs-submit" type="submit">Notify me</button>
+      </form>
+
+      <p class="labs-success" id="labs-success">You're on the list. We'll reach out when we launch.</p>
+      <p class="labs-fine-print">No spam. Just a heads-up when we're live.</p>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('labs-form');
+    const success = document.getElementById('labs-success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = form.querySelector('input[type="email"]').value.trim();
+      if (!email || !email.includes('@')) return;
+
+      // Replace this fetch with your actual form endpoint (e.g. Formspree, ConvertKit, etc.)
+      // For now, show the success message immediately.
+      form.style.display = 'none';
+      success.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
