@@ -3,7 +3,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  let email;
+  try {
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    email = body?.email;
+  } catch {
+    return res.status(400).json({ error: 'Invalid request body' });
+  }
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Invalid email address' });
@@ -58,13 +64,16 @@ export default async function handler(req, res) {
       }),
     });
 
-    // Klaviyo returns 202 Accepted on success
     if (response.status === 202 || response.ok) {
       return res.status(200).json({ success: true });
     }
 
-    const body = await response.json();
-    const detail = body?.errors?.[0]?.detail || 'Subscription failed';
+    let detail = 'Subscription failed';
+    try {
+      const body = await response.json();
+      detail = body?.errors?.[0]?.detail || detail;
+    } catch {}
+
     return res.status(response.status).json({ error: detail });
   } catch (err) {
     return res.status(500).json({ error: 'Internal server error' });

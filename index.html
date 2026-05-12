@@ -676,7 +676,14 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email }),
         });
-        var data = await res.json();
+
+        var data;
+        try {
+          data = await res.json();
+        } catch {
+          data = {};
+        }
+
         if (res.ok && data.success) {
           document.getElementById('subscribe-fields').style.display = 'none';
           successEl.style.display = 'block';
@@ -684,13 +691,13 @@
           errEl.textContent = data.error || 'Something went wrong. Please try again.';
           errEl.style.display = 'block';
           btn.disabled = false;
-          btn.value = 'Get Early Access';
+          btn.textContent = 'Get Early Access';
         }
       } catch (err) {
-        errEl.textContent = 'Network error. Please try again.';
+        errEl.textContent = 'Could not connect. Please try again.';
         errEl.style.display = 'block';
         btn.disabled = false;
-        btn.value = 'Get Early Access';
+        btn.textContent = 'Get Early Access';
       }
     });
   </script>
