@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GHK-Cu | ELVYN Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/images/logo.jpg" />
+  <style>
+    .product-nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.5rem; max-width: 1280px; margin: 0 auto; border-bottom: 1px solid rgba(148, 163, 184, 0.15); }
+    .product-nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .product-nav-logo { width: 34px; height: 34px; border-radius: 999px; object-fit: cover; border: 1px solid rgba(148, 163, 184, 0.5); }
+    .product-nav-name { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #f9fafb; }
+    .product-nav-name span { color: #38bdf8; }
+    .product-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; text-decoration: none; transition: color 0.15s; }
+    .product-back:hover { color: #e5e7eb; }
+    .product-main { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+    .product-badge { display: inline-block; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 0.28rem 0.75rem; border-radius: 999px; margin-bottom: 1.2rem; }
+    .product-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: 0.03em; margin-bottom: 0.4rem; }
+    .product-title span { color: #38bdf8; }
+    .product-subtitle { color: #6b7280; margin-bottom: 2rem; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.78rem; }
+    .product-desc { font-size: 0.97rem; color: #9ca3af; line-height: 1.75; margin-bottom: 2.5rem; }
+    .product-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    .product-detail-card { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 1rem; padding: 1.1rem 1.2rem; }
+    .product-detail-label { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7280; margin-bottom: 0.3rem; }
+    .product-detail-value { font-size: 0.92rem; font-weight: 600; color: #e5e7eb; margin-bottom: 0.4rem; }
+    .product-detail-desc { font-size: 0.72rem; color: #6b7280; line-height: 1.55; margin-top: 0.5rem; }
+    .product-detail-expand { margin-top: 0.5rem; }
+    .product-detail-expand summary { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: #38bdf8; cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 0.3rem; user-select: none; }
+    .product-detail-expand summary::-webkit-details-marker { display: none; }
+    .product-detail-expand summary::after { content: "▾"; font-size: 0.7rem; transition: transform 0.15s ease; }
+    .product-detail-expand[open] summary::after { transform: rotate(180deg); }
+    .product-cta { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #f9fafb; border: 1px solid rgba(186, 230, 253, 0.3); border-radius: 999px; padding: 0.8rem 2rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; display: inline-block; box-shadow: 0 14px 45px rgba(2, 132, 199, 0.3); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .product-cta:hover { transform: translateY(-1px); box-shadow: 0 18px 55px rgba(2, 132, 199, 0.45); }
+    .product-disclaimer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(31, 41, 55, 0.9); font-size: 0.7rem; color: #374151; line-height: 1.7; }
+    @media (max-width: 500px) { .product-details { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header style="border-bottom: 1px solid rgba(148, 163, 184, 0.15);">
+    <div class="product-nav">
+      <a href="/" class="product-nav-brand">
+        <img src="/images/logo.jpg" alt="ELVYN Labs" class="product-nav-logo" />
+        <span class="product-nav-name">ELVYN <span>Labs</span></span>
+      </a>
+      <a href="/" class="product-back">← Back to Labs</a>
+    </div>
+  </header>
+
+  <main class="product-main">
+    <span class="product-badge">Research Use Only</span>
+    <h1 class="product-title"><span>GHK-Cu</span></h1>
+    <p class="product-subtitle">Copper Peptide · Cellular Regeneration</p>
+
+    <p class="product-desc">
+      GHK-Cu is a naturally occurring copper peptide complex that declines significantly with age. Research shows it activates over 4,000 human genes and plays a role in wound healing, anti-inflammatory signaling, antioxidant activity, and collagen synthesis. It has been extensively studied for its regenerative effects on skin, hair follicles, and connective tissue.
+    </p>
+
+    <div class="product-details">
+      <div class="product-detail-card">
+        <p class="product-detail-label">Form</p>
+        <p class="product-detail-value">Lyophilized Powder</p>
+        <details class="product-detail-expand"><summary>What is this?</summary><p class="product-detail-desc">Freeze-dried format that locks in stability and extends shelf life without refrigeration during shipping.</p></details>
+      </div>
+      <div class="product-detail-card">
+        <p class="product-detail-label">Purity</p>
+        <p class="product-detail-value">&gt; 99% (HPLC Verified)</p>
+        <details class="product-detail-expand"><summary>What is this?</summary><p class="product-detail-desc">High-Performance Liquid Chromatography — an independent lab method that confirms compound concentration and purity.</p></details>
+      </div>
+      <div class="product-detail-card">
+        <p class="product-detail-label">Storage</p>
+        <p class="product-detail-value">Refrigerate at 2–8°C</p>
+        <details class="product-detail-expand"><summary>What is this?</summary><p class="product-detail-desc">Keep cold to preserve compound integrity. Avoid prolonged exposure to heat or direct light.</p></details>
+      </div>
+      <div class="product-detail-card">
+        <p class="product-detail-label">Availability</p>
+        <p class="product-detail-value">Coming Soon</p>
+      </div>
+    </div>
+
+    <a href="/" class="product-cta">Get Early Access</a>
+
+    <p class="product-disclaimer">
+      For research purposes only. Not for human consumption. Must be 18 or older to purchase. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
+    </p>
+  </main>
+</body>
+</html>
