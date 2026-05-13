@@ -401,6 +401,20 @@
       border-color: rgba(148, 163, 184, 0.4);
     }
 
+    #age-gate-community {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      color: #4b5563;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s ease;
+    }
+
+    #age-gate-community:hover {
+      color: #9ca3af;
+    }
+
     #age-gate-blocked {
       font-size: 0.88rem;
       color: #9ca3af;
@@ -524,6 +538,7 @@
       <div id="age-gate-actions">
         <button id="age-gate-yes" onclick="ageVerify(true)">Yes, I'm 18+</button>
         <button id="age-gate-no" onclick="ageVerify(false)">No</button>
+        <a href="/elvyn/" id="age-gate-community">Looking for 1:1 calls or discord? Visit ELVYN →</a>
       </div>
     </div>
   </div>
