@@ -85,9 +85,16 @@
       display: none;
       flex-direction: column;
       gap: 0.5rem;
-      padding: 1rem 1.5rem 1.25rem;
-      border-top: 1px solid rgba(148, 163, 184, 0.1);
-      background: rgba(5, 5, 9, 0.98);
+      padding: 0.75rem;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 1rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 1rem;
+      width: 200px;
+      z-index: 999;
     }
 
     .labs-mobile-menu.open { display: flex; }
@@ -124,13 +131,13 @@
       color: #f9fafb;
     }
 
-    .labs-nav-right { display: none; }
-    .labs-hamburger { display: flex; }
-
     @media (max-width: 640px) {
       .labs-nav {
         padding: 0.75rem 1rem;
       }
+
+      .labs-nav-right { display: none; }
+      .labs-hamburger { display: flex; }
 
       .labs-capture-heading {
         display: flex;
@@ -709,7 +716,7 @@
   </div>
 
   <!-- ── Nav ── -->
-  <header style="border-bottom: 1px solid rgba(148, 163, 184, 0.15);">
+  <header style="border-bottom: 1px solid rgba(148, 163, 184, 0.15); position: relative;">
     <nav class="labs-nav">
       
       <a href="index.html" class="labs-nav-brand">
