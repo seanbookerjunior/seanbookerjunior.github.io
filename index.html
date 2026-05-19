@@ -136,9 +136,6 @@
         padding: 0.75rem 1rem;
       }
 
-      .labs-nav-right { display: none; }
-      .labs-hamburger { display: flex; }
-
       .labs-capture-heading {
         display: flex;
         flex-direction: column;
@@ -555,6 +552,11 @@
     .labs-dropdown-toggle:hover {
       border-color: rgba(148, 163, 184, 0.6);
       color: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .labs-nav-right { display: none; }
+      .labs-hamburger { display: flex; }
     }
 
     @media (max-width: 480px) {
