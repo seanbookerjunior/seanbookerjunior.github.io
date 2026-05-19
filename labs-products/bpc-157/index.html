@@ -27,9 +27,9 @@
     .product-back:hover { color: #e5e7eb; }
 
     .product-main {
-      max-width: 720px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 4rem 1.5rem 5rem;
+      padding: 4rem 2rem 5rem;
     }
     .product-badge {
       display: inline-block;
@@ -114,9 +114,13 @@
       line-height: 1.7;
     }
 
-    .product-vial { display: block; max-width: 220px; margin: 0 auto 2rem; }
+    .product-intro { display: flex; gap: 2.5rem; align-items: flex-start; margin-bottom: 2.5rem; }
+    .product-vial { width: 380px; flex-shrink: 0; border-radius: 0.75rem; }
+    .product-desc { flex: 1; font-size: 0.97rem; color: #9ca3af; line-height: 1.75; margin-bottom: 0; }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
+      .product-intro { flex-direction: column; align-items: center; }
+      .product-vial { width: 100%; max-width: 260px; }
       .product-details { grid-template-columns: 1fr; }
     }
   </style>
@@ -137,11 +141,12 @@
     <h1 class="product-title"><span>BPC-157</span></h1>
     <p class="product-subtitle">Body Protection Compound · Tissue Repair &amp; Recovery</p>
 
-    <img src="/images/Bottle Label Design with Black Border/bpc-157 vial.png" alt="BPC-157 vial" class="product-vial" />
-
-    <p class="product-desc">
-      BPC-157 is a synthetic peptide derived from a protein found in human gastric juice. Research suggests it plays a role in accelerating wound healing, supporting tendon and ligament repair, and reducing inflammation. It has been studied extensively in animal models for its regenerative properties across musculoskeletal and gastrointestinal tissue.
-    </p>
+    <div class="product-intro">
+      <img src="/images/Bottle Label Design with Black Border/bpc-157 vial.png" alt="BPC-157 vial" class="product-vial" />
+      <p class="product-desc">
+        BPC-157 is a synthetic peptide derived from a protein found in human gastric juice. Research suggests it plays a role in accelerating wound healing, supporting tendon and ligament repair, and reducing inflammation. It has been studied extensively in animal models for its regenerative properties across musculoskeletal and gastrointestinal tissue.
+      </p>
+    </div>
 
     <div class="product-details">
       <div class="product-detail-card">

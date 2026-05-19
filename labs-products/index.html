@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | ELVYN Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/images/Elvyn new logo.PNG" />
+  <style>
+    .product-nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.5rem; max-width: 1280px; margin: 0 auto; border-bottom: 1px solid rgba(148, 163, 184, 0.15); }
+    .product-nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .product-nav-logo { width: 34px; height: 34px; border-radius: 999px; object-fit: cover; border: 1px solid rgba(148, 163, 184, 0.5); }
+    .product-nav-name { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #f9fafb; }
+    .product-nav-name span { color: #38bdf8; }
+    .product-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; text-decoration: none; transition: color 0.15s; }
+    .product-back:hover { color: #e5e7eb; }
+
+    .products-main {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .products-header {
+      margin-bottom: 3rem;
+    }
+
+    .products-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .products-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .products-title span { color: #38bdf8; }
+
+    .products-sub {
+      font-size: 0.92rem;
+      color: #6b7280;
+      letter-spacing: 0.04em;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(2, 132, 199, 0.15);
+    }
+
+    .product-card-image {
+      background: rgba(5, 5, 9, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      min-height: 200px;
+    }
+
+    .product-card-image img {
+      width: 100%;
+      max-width: 160px;
+      object-fit: contain;
+      border-radius: 0.75rem;
+    }
+
+    .product-card-body {
+      padding: 1.25rem 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f9fafb;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-card-sub {
+      font-size: 0.7rem;
+      color: #6b7280;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .product-card-cta {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .products-disclaimer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.7rem;
+      color: #374151;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .product-card-image { min-height: 150px; padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header style="border-bottom: 1px solid rgba(148, 163, 184, 0.15);">
+    <div class="product-nav">
+      <a href="/" class="product-nav-brand">
+        <img src="/images/Elvyn new logo.PNG" alt="ELVYN Labs" class="product-nav-logo" />
+        <span class="product-nav-name">ELVYN <span>Labs</span></span>
+      </a>
+      <a href="/" class="product-back">← Back to Labs</a>
+    </div>
+  </header>
+
+  <main class="products-main">
+    <div class="products-header">
+      <span class="products-badge">Research Use Only</span>
+      <h1 class="products-title">Our <span>Products</span></h1>
+      <p class="products-sub">Peptide research compounds. > 99% purity, HPLC verified.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <a href="/labs-products/bpc-157/" class="product-card">
+        <div class="product-card-image">
+          <img src="/images/Bottle Label Design with Black Border/bpc-157 vial.png" alt="BPC-157" />
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-name">BPC-157</p>
+          <p class="product-card-sub">Tissue repair &amp; recovery</p>
+          <span class="product-card-cta">View details →</span>
+        </div>
+      </a>
+
+      <a href="/labs-products/tb-500/" class="product-card">
+        <div class="product-card-image">
+          <img src="/images/Bottle Label Design with Black Border/tb-500 vial.png" alt="TB-500" />
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-name">TB-500</p>
+          <p class="product-card-sub">Healing &amp; inflammation support</p>
+          <span class="product-card-cta">View details →</span>
+        </div>
+      </a>
+
+      <a href="/labs-products/ghk-cu/" class="product-card">
+        <div class="product-card-image">
+          <img src="/images/Bottle Label Design with Black Border/ghk-cu vial.png" alt="GHK-Cu" />
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-name">GHK-Cu</p>
+          <p class="product-card-sub">Cellular regeneration</p>
+          <span class="product-card-cta">View details →</span>
+        </div>
+      </a>
+
+      <a href="/labs-products/glo/" class="product-card">
+        <div class="product-card-image">
+          <img src="/images/Bottle Label Design with Black Border/glow vial.png" alt="GLO" />
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-name">GLO</p>
+          <p class="product-card-sub">GHK-Cu · BPC-157 · TB-500 blend</p>
+          <span class="product-card-cta">View details →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="products-disclaimer">
+      For research purposes only. Not for human consumption. Must be 18 or older to purchase. These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease.
+    </p>
+  </main>
+</body>
+</html>
