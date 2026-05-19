@@ -55,16 +55,82 @@
       box-shadow: 0 12px 40px rgba(2, 132, 199, 0.45);
     }
 
-    @media (max-width: 480px) {
-      .labs-nav-community {
-        font-size: 0.62rem;
-        padding: 0.4rem 0.8rem;
-        letter-spacing: 0.06em;
+    /* ── Hamburger ── */
+    .labs-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.3rem;
+      color: #e5e7eb;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .labs-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .labs-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .labs-hamburger.open span:nth-child(2) { opacity: 0; }
+    .labs-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile menu ── */
+    .labs-mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem 1.25rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      background: rgba(5, 5, 9, 0.98);
+    }
+
+    .labs-mobile-menu.open { display: flex; }
+
+    .labs-mobile-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      transition: background 0.15s, border-color 0.15s;
+      cursor: pointer;
+      font-family: inherit;
+      width: 100%;
+      text-align: left;
+    }
+
+    .labs-mobile-menu-item:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.25);
+    }
+
+    .labs-mobile-menu-item.community {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      border-color: rgba(186, 230, 253, 0.3);
+      color: #f9fafb;
+    }
+
+    @media (max-width: 640px) {
+      .labs-nav {
+        padding: 0.75rem 1rem;
       }
 
-      .labs-nav {
-        padding: 0.5rem 1rem;
-      }
+      .labs-nav-right { display: none; }
+      .labs-hamburger { display: flex; }
 
       .labs-capture-heading {
         display: flex;
@@ -651,18 +717,40 @@
         <span class="labs-nav-name">ELVYN <span>Labs</span></span>
       </a>
       <div class="labs-nav-right">
-
         <button class="labs-search-btn" onclick="openSearch()" aria-label="Search products">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
         </button>
-
         <a href="/labs-products/" class="labs-dropdown-toggle" style="text-decoration:none;">Products</a>
-
         <a href="/elvyn/" class="labs-nav-community">Community</a>
       </div>
+
+      <button class="labs-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+
+    <div class="labs-mobile-menu" id="mobile-menu">
+      <button class="labs-mobile-menu-item" onclick="openSearch(); closeMobileMenu();">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Search
+      </button>
+      <a href="/labs-products/" class="labs-mobile-menu-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/>
+        </svg>
+        Products
+      </a>
+      <a href="/elvyn/" class="labs-mobile-menu-item community">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Community
+      </a>
+    </div>
   </header>
 
   <!-- ── Search Modal ── -->
@@ -761,6 +849,16 @@
   </script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleMobileMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
 
     var PRODUCTS = [
       { name: 'BPC-157', sub: 'Tissue repair & recovery', url: '/labs-products/bpc-157/', img: '/images/Bottle Label Design with Black Border/bpc-157 vial.png' },
