@@ -67,8 +67,10 @@ module.exports = async function handler(req, res) {
       return res.status(response.status).json({ error: msg });
     }
 
-    const checkoutUrl = data?.data?.payment?.checkout_url;
-    if (!checkoutUrl) return res.status(500).json({ error: 'No checkout URL returned' });
+    const checkoutUrl = data?.payment?.checkout_url ?? data?.data?.payment?.checkout_url;
+    if (!checkoutUrl) {
+      return res.status(500).json({ error: 'No checkout URL returned', debug: JSON.stringify(data) });
+    }
 
     return res.status(200).json({ checkout_url: checkoutUrl });
   } catch {
