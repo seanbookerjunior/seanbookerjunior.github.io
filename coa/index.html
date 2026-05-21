@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2S3S47GCPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2S3S47GCPT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate of Analysis — ELVYN Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/images/Elvyn new logo.PNG" />
+  <style>
+    .policy-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .policy-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+    }
+    .policy-nav-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+    .policy-nav-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+    .policy-nav-name span { color: #38bdf8; }
+    .policy-nav-community {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #f9fafb;
+      border: 1px solid rgba(186,230,253,0.3);
+      border-radius: 999px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(2,132,199,0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .policy-nav-community:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 40px rgba(2,132,199,0.45);
+    }
+    .labs-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .labs-dropdown-toggle {
+      background: rgba(15,23,42,0.8);
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 999px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: inherit;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+    .labs-search-btn {
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 999px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: border-color 0.15s ease, color 0.15s ease;
+      flex-shrink: 0;
+    }
+    .labs-search-btn:hover { border-color: rgba(148,163,184,0.6); color: #f9fafb; }
+    .labs-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.3rem;
+      color: #e5e7eb;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .labs-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .labs-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .labs-hamburger.open span:nth-child(2) { opacity: 0; }
+    .labs-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .labs-mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(148,163,184,0.15);
+      border-radius: 1rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 1rem;
+      width: 200px;
+      z-index: 999;
+    }
+    .labs-mobile-menu.open { display: flex; }
+    .labs-mobile-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.6);
+      border: 1px solid rgba(148,163,184,0.12);
+      transition: background 0.15s, border-color 0.15s;
+      cursor: pointer;
+      font-family: inherit;
+      width: 100%;
+      text-align: left;
+    }
+    .labs-mobile-menu-item:hover { background: rgba(15,23,42,0.9); border-color: rgba(148,163,184,0.25); }
+    .labs-mobile-menu-item.community { background: linear-gradient(135deg,#0284c7,#38bdf8); border-color: rgba(186,230,253,0.3); color: #f9fafb; }
+    @media (max-width: 640px) { .labs-nav-right { display: none; } .labs-hamburger { display: flex; } }
+    #search-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 5rem 1.5rem 2rem;
+      background: rgba(5,5,9,0.85);
+      backdrop-filter: blur(10px);
+    }
+    #search-modal.open { display: flex; }
+    #search-box {
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(148,163,184,0.2);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 540px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    #search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(148,163,184,0.1);
+    }
+    #search-input-wrap svg { flex-shrink: 0; color: #6b7280; }
+    #search-input { flex: 1; background: transparent; border: none; outline: none; font-size: 1rem; color: #f9fafb; font-family: inherit; }
+    #search-input::placeholder { color: #4b5563; }
+    #search-close { background: none; border: none; color: #6b7280; cursor: pointer; font-size: 1.2rem; line-height: 1; padding: 0; transition: color 0.15s; }
+    #search-close:hover { color: #e5e7eb; }
+    #search-results { padding: 0.5rem 0; max-height: 360px; overflow-y: auto; }
+    .search-result { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1.25rem; text-decoration: none; transition: background 0.15s; }
+    .search-result:hover { background: rgba(56,189,248,0.07); }
+    .search-result-img { width: 48px; height: 48px; object-fit: contain; border-radius: 0.5rem; background: rgba(5,5,9,0.5); padding: 4px; flex-shrink: 0; }
+    .search-result-name { font-size: 0.92rem; font-weight: 600; color: #f9fafb; letter-spacing: 0.03em; }
+    .search-result-sub { font-size: 0.72rem; color: #6b7280; margin-top: 0.1rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    #search-empty { padding: 1.5rem 1.25rem; font-size: 0.88rem; color: #4b5563; display: none; }
+
+    /* Page layout */
+    .coa-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+    .coa-kicker {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+    }
+    .coa-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .coa-sub {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+      max-width: 56ch;
+    }
+
+    /* Product tabs */
+    .coa-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .coa-tab {
+      background: rgba(15,23,42,0.6);
+      border: 1px solid rgba(148,163,184,0.15);
+      border-radius: 999px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .coa-tab:hover { color: #e5e7eb; border-color: rgba(148,163,184,0.35); }
+    .coa-tab.active {
+      background: rgba(56,189,248,0.1);
+      border-color: rgba(56,189,248,0.4);
+      color: #38bdf8;
+    }
+
+    /* CoA card */
+    .coa-card {
+      display: none;
+      background: rgba(15,23,42,0.5);
+      border: 1px solid rgba(148,163,184,0.12);
+      border-radius: 1.25rem;
+      overflow: hidden;
+    }
+    .coa-card.active { display: block; }
+
+    .coa-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid rgba(148,163,184,0.08);
+      flex-wrap: wrap;
+    }
+    .coa-product-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.3rem;
+    }
+    .coa-product-desc {
+      font-size: 0.82rem;
+      color: #6b7280;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .coa-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #86efac;
+      white-space: nowrap;
+    }
+    .coa-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+    }
+
+    .coa-meta-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0;
+      border-bottom: 1px solid rgba(148,163,184,0.08);
+    }
+    .coa-meta-item {
+      padding: 1.1rem 2rem;
+      border-right: 1px solid rgba(148,163,184,0.08);
+    }
+    .coa-meta-item:last-child { border-right: none; }
+    .coa-meta-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #4b5563;
+      margin-bottom: 0.3rem;
+    }
+    .coa-meta-value {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+    .coa-meta-value.placeholder {
+      color: #374151;
+      font-style: italic;
+    }
+
+    /* Results table */
+    .coa-results {
+      padding: 1.5rem 2rem 2rem;
+    }
+    .coa-results-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+    }
+    .coa-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .coa-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4b5563;
+      border-bottom: 1px solid rgba(148,163,184,0.1);
+    }
+    .coa-table td {
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      border-bottom: 1px solid rgba(148,163,184,0.05);
+    }
+    .coa-table tr:last-child td { border-bottom: none; }
+    .coa-table td:first-child { color: #e5e7eb; font-weight: 500; }
+    .result-pass {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: #86efac;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .result-pass::before { content: '✓'; }
+    .result-pending {
+      color: #6b7280;
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+
+    /* Download button */
+    .coa-download-row {
+      padding: 1.25rem 2rem;
+      border-top: 1px solid rgba(148,163,184,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .coa-download-note {
+      font-size: 0.78rem;
+      color: #4b5563;
+    }
+    .coa-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.25);
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      cursor: not-allowed;
+      font-family: inherit;
+      opacity: 0.5;
+    }
+
+    /* Info banner */
+    .coa-info {
+      margin-top: 2rem;
+      background: rgba(56,189,248,0.05);
+      border: 1px solid rgba(56,189,248,0.12);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.4rem;
+      font-size: 0.82rem;
+      color: #6b7280;
+      line-height: 1.7;
+    }
+    .coa-info a { color: #38bdf8; text-decoration: none; }
+    .coa-info a:hover { text-decoration: underline; }
+
+    /* Footer */
+    .policy-footer {
+      border-top: 1px solid rgba(31,41,55,0.9);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .policy-footer-disclaimer {
+      font-size: 0.7rem;
+      color: #4b5563;
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto 1rem;
+    }
+    .policy-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .policy-footer-links a {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s;
+    }
+    .policy-footer-links a:hover { color: #ffffff; }
+    .policy-footer-copy {
+      font-size: 0.72rem;
+      color: #374151;
+    }
+
+    @media (max-width: 560px) {
+      .coa-card-header { padding: 1.5rem 1.25rem 1.25rem; }
+      .coa-meta-item { padding: 0.9rem 1.25rem; }
+      .coa-results { padding: 1.25rem 1.25rem 1.5rem; }
+      .coa-download-row { padding: 1rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header style="position: relative;">
+    <nav class="policy-nav">
+      <a href="/" class="policy-nav-brand">
+        <img src="/images/Elvyn new logo.PNG" alt="ELVYN Labs" class="policy-nav-logo" />
+        <span class="policy-nav-name">ELVYN <span>Labs</span></span>
+      </a>
+      <div class="labs-nav-right">
+        <button class="cart-nav-btn" onclick="openCart()" aria-label="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span id="cart-badge"></span>
+        </button>
+        <button class="labs-search-btn" onclick="openSearch()" aria-label="Search products">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <span class="labs-dropdown-toggle" style="opacity:0.35;cursor:not-allowed;pointer-events:none;">Products</span>
+        <a href="/elvyn/" class="policy-nav-community">Community</a>
+      </div>
+      <button class="labs-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="labs-mobile-menu" id="mobile-menu">
+      <button class="labs-mobile-menu-item" onclick="openCart(); closeMobileMenu();">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Cart
+      </button>
+      <button class="labs-mobile-menu-item" onclick="openSearch(); closeMobileMenu();">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Search
+      </button>
+      <span class="labs-mobile-menu-item" style="opacity:0.35;cursor:not-allowed;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/>
+        </svg>
+        Products
+      </span>
+      <a href="/elvyn/" class="labs-mobile-menu-item community">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Community
+      </a>
+      <a href="/coa/" class="labs-mobile-menu-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        CoA
+      </a>
+    </div>
+  </header>
+
+  <div id="search-modal" onclick="handleModalClick(event)">
+    <div id="search-box">
+      <div id="search-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="search-input" type="text" placeholder="Search products…" autocomplete="off" oninput="runSearch(this.value)" />
+        <button id="search-close" onclick="closeSearch()">✕</button>
+      </div>
+      <div id="search-results"></div>
+      <p id="search-empty">No products found.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="coa-wrap">
+      <p class="coa-kicker">Third-Party Tested</p>
+      <h1 class="coa-title">Certificates of Analysis</h1>
+      <p class="coa-sub">Every ELVYN Labs batch is independently tested for identity, purity, and quality. Select a product below to view its current CoA.</p>
+
+      <!-- Product tabs -->
+      <div class="coa-tabs">
+        <button class="coa-tab active" onclick="switchTab('bpc157', this)">BPC-157</button>
+        <button class="coa-tab" onclick="switchTab('tb500', this)">TB-500</button>
+        <button class="coa-tab" onclick="switchTab('ghkcu', this)">GHK-Cu</button>
+        <button class="coa-tab" onclick="switchTab('glo', this)">GLO</button>
+      </div>
+
+      <!-- BPC-157 -->
+      <div class="coa-card active" id="coa-bpc157">
+        <div class="coa-card-header">
+          <div>
+            <p class="coa-product-name">BPC-157</p>
+            <p class="coa-product-desc">Body Protection Compound · Pentadecapeptide</p>
+          </div>
+          <span class="coa-badge">Verified</span>
+        </div>
+        <div class="coa-meta-row">
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Lot Number</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Test Date</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Quantity Tested</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Testing Laboratory</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+        </div>
+        <div class="coa-results">
+          <p class="coa-results-label">Test Results</p>
+          <table class="coa-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Method</th>
+                <th>Specification</th>
+                <th>Result</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identity (Peptide Sequence)</td>
+                <td>MS / ESI-MS</td>
+                <td>Conforms to structure</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Purity</td>
+                <td>HPLC (UV 220nm)</td>
+                <td>≥ 99.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Appearance</td>
+                <td>Visual</td>
+                <td>White lyophilized powder</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Water Content</td>
+                <td>Karl Fischer</td>
+                <td>≤ 6.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Residual Solvents</td>
+                <td>GC-HS</td>
+                <td>Meets ICH Q3C limits</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Heavy Metals</td>
+                <td>ICP-MS</td>
+                <td>Meets USP &lt;232&gt; limits</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="coa-download-row">
+          <p class="coa-download-note">Full PDF report available once batch testing is complete.</p>
+          <button class="coa-download-btn" disabled>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- TB-500 -->
+      <div class="coa-card" id="coa-tb500">
+        <div class="coa-card-header">
+          <div>
+            <p class="coa-product-name">TB-500</p>
+            <p class="coa-product-desc">Thymosin Beta-4 Fragment · Synthetic Peptide</p>
+          </div>
+          <span class="coa-badge">Verified</span>
+        </div>
+        <div class="coa-meta-row">
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Lot Number</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Test Date</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Quantity Tested</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Testing Laboratory</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+        </div>
+        <div class="coa-results">
+          <p class="coa-results-label">Test Results</p>
+          <table class="coa-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Method</th>
+                <th>Specification</th>
+                <th>Result</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identity (Peptide Sequence)</td>
+                <td>MS / ESI-MS</td>
+                <td>Conforms to structure</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Purity</td>
+                <td>HPLC (UV 220nm)</td>
+                <td>≥ 99.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Appearance</td>
+                <td>Visual</td>
+                <td>White lyophilized powder</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Water Content</td>
+                <td>Karl Fischer</td>
+                <td>≤ 6.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Residual Solvents</td>
+                <td>GC-HS</td>
+                <td>Meets ICH Q3C limits</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Heavy Metals</td>
+                <td>ICP-MS</td>
+                <td>Meets USP &lt;232&gt; limits</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="coa-download-row">
+          <p class="coa-download-note">Full PDF report available once batch testing is complete.</p>
+          <button class="coa-download-btn" disabled>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- GHK-Cu -->
+      <div class="coa-card" id="coa-ghkcu">
+        <div class="coa-card-header">
+          <div>
+            <p class="coa-product-name">GHK-Cu</p>
+            <p class="coa-product-desc">Copper Peptide · Glycyl-L-Histidyl-L-Lysine Copper</p>
+          </div>
+          <span class="coa-badge">Verified</span>
+        </div>
+        <div class="coa-meta-row">
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Lot Number</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Test Date</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Quantity Tested</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Testing Laboratory</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+        </div>
+        <div class="coa-results">
+          <p class="coa-results-label">Test Results</p>
+          <table class="coa-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Method</th>
+                <th>Specification</th>
+                <th>Result</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identity (Peptide Sequence)</td>
+                <td>MS / ESI-MS</td>
+                <td>Conforms to structure</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Purity</td>
+                <td>HPLC (UV 220nm)</td>
+                <td>≥ 98.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Copper Content</td>
+                <td>ICP-OES</td>
+                <td>Within theoretical range</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Appearance</td>
+                <td>Visual</td>
+                <td>Blue/green lyophilized powder</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Water Content</td>
+                <td>Karl Fischer</td>
+                <td>≤ 8.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Heavy Metals</td>
+                <td>ICP-MS</td>
+                <td>Meets USP &lt;232&gt; limits</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="coa-download-row">
+          <p class="coa-download-note">Full PDF report available once batch testing is complete.</p>
+          <button class="coa-download-btn" disabled>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- GLO -->
+      <div class="coa-card" id="coa-glo">
+        <div class="coa-card-header">
+          <div>
+            <p class="coa-product-name">GLO</p>
+            <p class="coa-product-desc">Proprietary Blend · GHK-Cu · BPC-157 · TB-500</p>
+          </div>
+          <span class="coa-badge">Verified</span>
+        </div>
+        <div class="coa-meta-row">
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Lot Number</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Test Date</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Quantity Tested</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+          <div class="coa-meta-item">
+            <p class="coa-meta-label">Testing Laboratory</p>
+            <p class="coa-meta-value placeholder">— Pending —</p>
+          </div>
+        </div>
+        <div class="coa-results">
+          <p class="coa-results-label">Test Results</p>
+          <table class="coa-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Method</th>
+                <th>Specification</th>
+                <th>Result</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identity — BPC-157</td>
+                <td>MS / ESI-MS</td>
+                <td>Conforms to structure</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Identity — TB-500</td>
+                <td>MS / ESI-MS</td>
+                <td>Conforms to structure</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Identity — GHK-Cu</td>
+                <td>MS / ESI-MS</td>
+                <td>Conforms to structure</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Blend Ratio</td>
+                <td>HPLC</td>
+                <td>Within ±5% of specification</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Total Purity</td>
+                <td>HPLC (UV 220nm)</td>
+                <td>≥ 98.0%</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>Heavy Metals</td>
+                <td>ICP-MS</td>
+                <td>Meets USP &lt;232&gt; limits</td>
+                <td class="placeholder" style="font-style:italic;color:#374151;">—</td>
+                <td><span class="result-pending">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="coa-download-row">
+          <p class="coa-download-note">Full PDF report available once batch testing is complete.</p>
+          <button class="coa-download-btn" disabled>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+
+      <p class="coa-info">
+        CoA documentation is updated with each new batch. Results are conducted by an independent third-party laboratory. For questions or to request a specific lot report, <a href="/contact/">contact us</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer class="policy-footer">
+    <nav class="policy-footer-links">
+      <a href="/terms/">Terms of Service</a>
+      <a href="/research-disclaimer/">Research Use Only</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/shipping/">Shipping Policy</a>
+      <a href="/refund/">Refund Policy</a>
+      <a href="/contact/">Contact</a>
+      <a href="/coa/">Certificates of Analysis</a>
+    </nav>
+    <p class="policy-footer-disclaimer">
+      All products are for research purposes only. Not for human consumption. Must be 18 or older to purchase. These statements have not been evaluated by the Food and Drug Administration.
+    </p>
+    <p class="policy-footer-copy">© <span id="year"></span> ELVYN Labs. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function switchTab(id, btn) {
+      document.querySelectorAll('.coa-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.coa-card').forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('coa-' + id).classList.add('active');
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+    var PRODUCTS = [
+      { name: 'BPC-157', sub: 'Tissue repair & recovery', url: '/labs-products/bpc-157/', img: '/images/Bottle Label Design with Black Border/bpc-157 vial.png' },
+      { name: 'TB-500',  sub: 'Healing & inflammation support', url: '/labs-products/tb-500/', img: '/images/Bottle Label Design with Black Border/tb-500 vial.png' },
+      { name: 'GHK-Cu', sub: 'Cellular regeneration', url: '/labs-products/ghk-cu/', img: '/images/Bottle Label Design with Black Border/ghk-cu vial.png' },
+      { name: 'GLO',    sub: 'GHK-Cu · BPC-157 · TB-500 blend', url: '/labs-products/glo/', img: '/images/Bottle Label Design with Black Border/glow vial.png' },
+    ];
+    function openSearch() {
+      document.getElementById('search-modal').classList.add('open');
+      document.getElementById('search-input').value = '';
+      renderResults(PRODUCTS);
+      setTimeout(function() { document.getElementById('search-input').focus(); }, 50);
+    }
+    function closeSearch() { document.getElementById('search-modal').classList.remove('open'); }
+    function handleModalClick(e) { if (e.target === document.getElementById('search-modal')) closeSearch(); }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSearch(); });
+    function runSearch(q) {
+      var filtered = q.trim() === '' ? PRODUCTS : PRODUCTS.filter(function(p) { return (p.name + ' ' + p.sub).toLowerCase().includes(q.toLowerCase()); });
+      renderResults(filtered);
+    }
+    function renderResults(list) {
+      var container = document.getElementById('search-results');
+      var empty = document.getElementById('search-empty');
+      if (list.length === 0) { container.innerHTML = ''; empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      container.innerHTML = list.map(function(p) {
+        return '<a href="' + p.url + '" class="search-result">'
+          + '<img src="' + p.img + '" alt="' + p.name + '" class="search-result-img" />'
+          + '<div><p class="search-result-name">' + p.name + '</p>'
+          + '<p class="search-result-sub">' + p.sub + '</p></div>'
+          + '</a>';
+      }).join('');
+    }
+  </script>
+  <script src="/components/cart.js"></script>
+</body>
+</html>
