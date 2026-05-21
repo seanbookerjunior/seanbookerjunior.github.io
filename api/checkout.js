@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
 
     const checkoutUrl = data?.payment?.checkout_url ?? data?.data?.payment?.checkout_url;
     if (!checkoutUrl) {
-      return res.status(500).json({ error: 'No checkout URL returned', debug: JSON.stringify(data) });
+      return res.status(500).json({ error: 'No checkout URL returned. NexaPay response: ' + JSON.stringify(data) });
     }
 
     return res.status(200).json({ checkout_url: checkoutUrl });
