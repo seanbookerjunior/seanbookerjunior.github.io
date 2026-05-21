@@ -43,16 +43,18 @@
         <details class="product-detail-expand"><summary>What is this?</summary><p class="product-detail-desc">Keep cold to preserve compound integrity. Avoid prolonged exposure to heat or direct light.</p></details>
       </div>
       <div class="product-detail-card">
-        <p class="product-detail-label">Availability</p>
-        <p class="product-detail-value">Coming Soon</p>
+        <p class="product-detail-label">Price</p>
+        <p class="product-detail-value">$85.00</p>
       </div>
     </div>
 
-    <a href="/" class="product-cta">Get Early Access</a>
+    <button class="product-add-to-cart" onclick="addToCart(window.PRODUCT)">Add to Cart — $85</button>
 
     <labs-product-disclaimer></labs-product-disclaimer>
   </main>
 
+  <script>window.PRODUCT = { name: 'TB-500', price: 85 };</script>
   <script src="/components/labs-components.js"></script>
+  <script src="/components/cart.js"></script>
 </body>
 </html>

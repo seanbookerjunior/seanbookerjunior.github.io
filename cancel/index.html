@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Cancelled | ELVYN Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/labs-products/product.css" />
+  <link rel="icon" type="image/png" href="/images/Elvyn new logo.PNG" />
+  <style>
+    .status-main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .status-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.07);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+    }
+    .status-icon svg { width: 28px; height: 28px; stroke: #6b7280; }
+    .status-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #6b7280;
+      border: 1px solid rgba(107, 114, 128, 0.35);
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .status-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.75rem;
+      color: #f9fafb;
+    }
+    .status-desc {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .status-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .status-cta {
+      display: inline-block;
+      background: #38bdf8;
+      color: #050509;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .status-cta:hover { opacity: 0.85; }
+    .status-cta-ghost {
+      display: inline-block;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #9ca3af;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .status-cta-ghost:hover { border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; }
+  </style>
+</head>
+<body>
+  <labs-product-header></labs-product-header>
+
+  <main class="status-main">
+    <div class="status-icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
+    <span class="status-badge">Cancelled</span>
+    <h1 class="status-title">Payment Cancelled</h1>
+    <p class="status-desc">
+      Your payment was not completed. No charges were made.<br />
+      Your cart has been saved — you can try again whenever you're ready.
+    </p>
+    <div class="status-actions">
+      <button class="status-cta" onclick="openCart()">Return to Cart</button>
+      <a href="/labs-products/" class="status-cta-ghost">Browse Products</a>
+    </div>
+  </main>
+
+  <script src="/components/labs-components.js"></script>
+  <script src="/components/cart.js"></script>
+</body>
+</html>

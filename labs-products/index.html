@@ -49,9 +49,9 @@
     .product-card-image img { width: 100%; max-width: 160px; object-fit: contain; border-radius: 0.75rem; }
 
     .product-card-body { padding: 1.25rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .product-card-name { font-size: 1.1rem; font-weight: 700; color: #f9fafb; letter-spacing: 0.04em; margin-bottom: 0.3rem; }
-    .product-card-sub { font-size: 0.7rem; color: #6b7280; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; flex: 1; }
-    .product-card-cta { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #38bdf8; display: flex; align-items: center; gap: 0.3rem; }
+    .product-card-name { font-size: 1.1rem; font-weight: 700; color: #f9fafb; letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+    .product-card-sub { font-size: 0.7rem; color: #6b7280; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; flex: 1; }
+    .product-card-price { font-size: 0.88rem; font-weight: 600; color: #e5e7eb; margin-bottom: 1rem; }
 
     .products-disclaimer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(31, 41, 55, 0.9); font-size: 0.7rem; color: #374151; line-height: 1.7; }
 
@@ -69,7 +69,7 @@
     <div class="products-header">
       <span class="products-badge">Research Use Only</span>
       <h1 class="products-title">Our <span>Products</span></h1>
-      <p class="products-sub">Peptide research compounds. > 99% purity, HPLC verified.</p>
+      <p class="products-sub">Peptide research compounds. &gt; 99% purity, HPLC verified.</p>
     </div>
 
     <div class="products-grid">
@@ -81,7 +81,11 @@
         <div class="product-card-body">
           <p class="product-card-name">BPC-157</p>
           <p class="product-card-sub">Tissue repair &amp; recovery</p>
-          <span class="product-card-cta">View details →</span>
+          <p class="product-card-price">$85</p>
+          <div class="product-card-footer">
+            <span class="product-card-cta">View details →</span>
+            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'BPC-157',price:85})">+ Add</button>
+          </div>
         </div>
       </a>
 
@@ -92,7 +96,11 @@
         <div class="product-card-body">
           <p class="product-card-name">TB-500</p>
           <p class="product-card-sub">Healing &amp; inflammation support</p>
-          <span class="product-card-cta">View details →</span>
+          <p class="product-card-price">$85</p>
+          <div class="product-card-footer">
+            <span class="product-card-cta">View details →</span>
+            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'TB-500',price:85})">+ Add</button>
+          </div>
         </div>
       </a>
 
@@ -103,7 +111,11 @@
         <div class="product-card-body">
           <p class="product-card-name">GHK-Cu</p>
           <p class="product-card-sub">Cellular regeneration</p>
-          <span class="product-card-cta">View details →</span>
+          <p class="product-card-price">$75</p>
+          <div class="product-card-footer">
+            <span class="product-card-cta">View details →</span>
+            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'GHK-Cu',price:75})">+ Add</button>
+          </div>
         </div>
       </a>
 
@@ -114,7 +126,11 @@
         <div class="product-card-body">
           <p class="product-card-name">GLO</p>
           <p class="product-card-sub">GHK-Cu · BPC-157 · TB-500 blend</p>
-          <span class="product-card-cta">View details →</span>
+          <p class="product-card-price">$160</p>
+          <div class="product-card-footer">
+            <span class="product-card-cta">View details →</span>
+            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'GLO',price:160})">+ Add</button>
+          </div>
         </div>
       </a>
 
@@ -126,5 +142,6 @@
   </main>
 
   <script src="/components/labs-components.js"></script>
+  <script src="/components/cart.js"></script>
 </body>
 </html>
