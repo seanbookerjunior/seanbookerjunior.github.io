@@ -1,7 +1,7 @@
 class LabsProductHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <header style="border-bottom: 1px solid rgba(148, 163, 184, 0.15);">
+      <header>
         <div class="product-nav">
           <a href="/" class="product-nav-brand">
             <img src="/images/Elvyn new logo.PNG" alt="ELVYN Labs" class="product-nav-logo" />
