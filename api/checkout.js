@@ -73,7 +73,8 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         amount,
-        currency: 'USDC',
+        currency: 'USD',
+        crypto: 'USDC',
         customer_email: email,
         description: lines.join(', '),
         success_url: 'https://elvynlabs.com/success',
