@@ -246,35 +246,48 @@
   }
 
   /* ── Google Places Autocomplete ── */
+  function parseAndFill(text) {
+    if (!text || !text.includes(',')) return;
+    // Google formats as: "400 Claremont Ave, Jersey City, NJ 07304, United States"
+    var parts = text.split(',').map(function (p) { return p.trim(); });
+    var street  = parts[0] || '';
+    var city    = parts[1] || '';
+    var stateZip = (parts[2] || '').trim().split(/\s+/);
+    var state   = stateZip[0] || '';
+    var zip     = stateZip[1] || '';
+    var country = parts[3] || '';
+    var streetHidden = document.getElementById('cart-street');
+    if (streetHidden) streetHidden.value = street;
+    var f = function (id, val) { var el = document.getElementById(id); if (el && val) el.value = val; };
+    f('cart-city', city); f('cart-state', state); f('cart-zip', zip); f('cart-country', country);
+  }
+
+  function getPlaceText(placeAC) {
+    if (typeof placeAC.value === 'string' && placeAC.value) return placeAC.value;
+    if (placeAC.shadowRoot) {
+      var inp = placeAC.shadowRoot.querySelector('input');
+      if (inp && inp.value) return inp.value;
+    }
+    return '';
+  }
+
   function initAutocomplete() {
     var wrap = document.getElementById('cart-street-wrap');
     if (!wrap) return;
     if (!window.google || !window.google.maps || !window.google.maps.places) {
       setTimeout(initAutocomplete, 300); return;
     }
-    var placeAC = new google.maps.places.PlaceAutocompleteElement({
-      types: ['address'],
-    });
+    var placeAC = new google.maps.places.PlaceAutocompleteElement({ types: ['address'] });
     wrap.appendChild(placeAC);
 
-    placeAC.addEventListener('gmp-placeselect', async function (e) {
-      var place = e.place || (e.detail && e.detail.place);
-      if (!place) return;
-      await place.fetchFields({ fields: ['addressComponents'] });
-      var num = '', route = '', city = '', state = '', zip = '', country = '';
-      (place.addressComponents || []).forEach(function (c) {
-        var t = c.types;
-        if (t.indexOf('street_number') > -1)               num     = c.longText  || c.long_name  || '';
-        if (t.indexOf('route') > -1)                       route   = c.longText  || c.long_name  || '';
-        if (t.indexOf('locality') > -1)                    city    = c.longText  || c.long_name  || '';
-        if (t.indexOf('administrative_area_level_1') > -1) state   = c.shortText || c.short_name || '';
-        if (t.indexOf('postal_code') > -1)                 zip     = c.longText  || c.long_name  || '';
-        if (t.indexOf('country') > -1)                     country = c.longText  || c.long_name  || '';
-      });
-      var streetHidden = document.getElementById('cart-street');
-      if (streetHidden) streetHidden.value = num ? num + ' ' + route : route;
-      var f = function (id, val) { var el = document.getElementById(id); if (el) el.value = val; };
-      f('cart-city', city); f('cart-state', state); f('cart-zip', zip); f('cart-country', country);
+    // Primary: event-based
+    placeAC.addEventListener('gmp-placeselect', function (e) {
+      setTimeout(function () { parseAndFill(getPlaceText(placeAC)); }, 100);
+    });
+
+    // Fallback: parse on focusout (fires when user picks from dropdown and focus leaves)
+    wrap.addEventListener('focusout', function () {
+      setTimeout(function () { parseAndFill(getPlaceText(placeAC)); }, 200);
     });
   }
 
