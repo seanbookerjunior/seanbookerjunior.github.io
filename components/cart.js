@@ -48,24 +48,42 @@
     var cart = getCart();
     if (!cart.length) return;
 
-    var emailEl  = document.getElementById('cart-email');
-    var errEl    = document.getElementById('cart-email-error');
-    var netErrEl = document.getElementById('cart-net-error');
-    var btn      = document.getElementById('cart-checkout-btn');
-    var email    = emailEl ? emailEl.value.trim() : '';
+    var emailEl   = document.getElementById('cart-email');
+    var errEl     = document.getElementById('cart-email-error');
+    var netErrEl  = document.getElementById('cart-net-error');
+    var addrErrEl = document.getElementById('cart-addr-error');
+    var btn       = document.getElementById('cart-checkout-btn');
+    var email     = emailEl ? emailEl.value.trim() : '';
+
+    var name    = (document.getElementById('cart-name')    || {}).value || '';
+    var street  = (document.getElementById('cart-street')  || {}).value || '';
+    var city    = (document.getElementById('cart-city')    || {}).value || '';
+    var state   = (document.getElementById('cart-state')   || {}).value || '';
+    var zip     = (document.getElementById('cart-zip')     || {}).value || '';
+    var country = (document.getElementById('cart-country') || {}).value || '';
+    name = name.trim(); street = street.trim(); city = city.trim();
+    state = state.trim(); zip = zip.trim(); country = country.trim();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       if (errEl) errEl.style.display = 'block';
       return;
     }
-    if (errEl)    errEl.style.display = 'none';
-    if (netErrEl) netErrEl.style.display = 'none';
+    if (errEl) errEl.style.display = 'none';
+
+    if (!name || !street || !city || !state || !zip || !country) {
+      if (addrErrEl) addrErrEl.style.display = 'block';
+      return;
+    }
+    if (addrErrEl) addrErrEl.style.display = 'none';
+    if (netErrEl)  netErrEl.style.display  = 'none';
 
     btn.disabled    = true;
     btn.textContent = 'Processing…';
 
+    var shipping = { name: name, street: street, city: city, state: state, zip: zip, country: country };
+
     try {
-      var res  = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cart: cart, email: email }) });
+      var res  = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cart: cart, email: email, shipping: shipping }) });
       var data = await res.json();
       if (res.ok && data.checkout_url) {
         localStorage.removeItem(KEY);
@@ -162,6 +180,11 @@
       '.cart-email-input:focus{border-color:rgba(56,189,248,0.5);}',
       '#cart-email-error{font-size:0.7rem;color:#f87171;display:none;margin:0;}',
       '#cart-net-error{font-size:0.7rem;color:#f87171;display:none;margin:0;}',
+      '#cart-addr-error{font-size:0.7rem;color:#f87171;display:none;margin:0;}',
+      '.cart-section-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#4b5563;margin:0.25rem 0 -0.1rem;}',
+      '.cart-addr-row{display:flex;gap:0.5rem;}',
+      '.cart-addr-half{flex:1;width:auto;}',
+      '#cart-footer{overflow-y:auto;max-height:68vh;}',
       '.cart-checkout-btn{width:100%;background:linear-gradient(135deg,#0284c7,#38bdf8);color:#f9fafb;border:1px solid rgba(186,230,253,0.3);border-radius:999px;padding:0.8rem;font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:inherit;box-shadow:0 10px 35px rgba(2,132,199,0.3);transition:transform 0.15s,box-shadow 0.15s;}',
       '.cart-checkout-btn:hover{transform:translateY(-1px);box-shadow:0 14px 45px rgba(2,132,199,0.45);}',
       '.cart-checkout-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}',
@@ -191,8 +214,20 @@
         '<div id="cart-items"></div>' +
         '<div id="cart-footer">' +
           '<div class="cart-total-row"><span class="cart-total-label">Total</span><span id="cart-total-amount" class="cart-total-value">$0.00</span></div>' +
-          '<input id="cart-email" type="email" class="cart-email-input" placeholder="Your email address" autocomplete="email" />' +
+          '<input id="cart-email" type="email" class="cart-email-input" placeholder="Email address" autocomplete="email" />' +
           '<p id="cart-email-error">Please enter a valid email.</p>' +
+          '<p class="cart-section-label">Shipping Address</p>' +
+          '<input id="cart-name" type="text" class="cart-email-input" placeholder="Full name" autocomplete="name" />' +
+          '<input id="cart-street" type="text" class="cart-email-input" placeholder="Street address" autocomplete="address-line1" />' +
+          '<div class="cart-addr-row">' +
+            '<input id="cart-city" type="text" class="cart-email-input cart-addr-half" placeholder="City" autocomplete="address-level2" />' +
+            '<input id="cart-state" type="text" class="cart-email-input cart-addr-half" placeholder="State" autocomplete="address-level1" />' +
+          '</div>' +
+          '<div class="cart-addr-row">' +
+            '<input id="cart-zip" type="text" class="cart-email-input cart-addr-half" placeholder="ZIP code" autocomplete="postal-code" />' +
+            '<input id="cart-country" type="text" class="cart-email-input cart-addr-half" placeholder="Country" autocomplete="country-name" value="United States" />' +
+          '</div>' +
+          '<p id="cart-addr-error">Please fill in your complete shipping address.</p>' +
           '<p id="cart-net-error"></p>' +
           '<button id="cart-checkout-btn" class="cart-checkout-btn" onclick="cartCheckout()">Checkout</button>' +
           '<p class="cart-note">Payments via NexaPay · Settled in USDC</p>' +

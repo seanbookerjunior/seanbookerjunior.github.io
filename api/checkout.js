@@ -1,3 +1,20 @@
+async function logOrderToSheet({ paymentId, email, shipping, lines, amount }) {
+  const url = process.env.GOOGLE_SHEET_URL;
+  if (!url) return;
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      action: 'create',
+      payment_id: paymentId,
+      email,
+      shipping,
+      items: lines.join(', '),
+      total: amount,
+    }),
+  });
+}
+
 const PRODUCTS = {
   'GLO':     160,
   'BPC-157':  85,
@@ -17,7 +34,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid request body' });
   }
 
-  const { cart, email } = body || {};
+  const { cart, email, shipping } = body || {};
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email))) {
     return res.status(400).json({ error: 'Invalid email address' });
@@ -25,6 +42,11 @@ module.exports = async function handler(req, res) {
 
   if (!Array.isArray(cart) || cart.length === 0) {
     return res.status(400).json({ error: 'Cart is empty' });
+  }
+
+  const { name, street, city, state, zip, country } = shipping || {};
+  if (!name || !street || !city || !state || !zip || !country) {
+    return res.status(400).json({ error: 'Shipping address is incomplete' });
   }
 
   // Use server-side prices — never trust the client
@@ -71,6 +93,9 @@ module.exports = async function handler(req, res) {
     if (!checkoutUrl) {
       return res.status(500).json({ error: 'Payment creation failed. Please try again.' });
     }
+
+    const paymentId = data?.payment?.id ?? data?.data?.payment?.id ?? '';
+    logOrderToSheet({ paymentId, email, shipping, lines, amount }).catch(() => {});
 
     return res.status(200).json({ checkout_url: checkoutUrl });
   } catch {
