@@ -199,6 +199,13 @@
       '.product-card-atc{background:rgba(15,23,42,0.8);color:#38bdf8;border:1px solid rgba(56,189,248,0.3);border-radius:999px;padding:0.35rem 0.85rem;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:background 0.15s,border-color 0.15s;white-space:nowrap;}',
       '.product-card-atc:hover{background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.5);}',
       '.product-card-footer{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;}',
+      /* Google Places dropdown */
+      '.pac-container{background:rgba(9,13,24,0.99);border:1px solid rgba(148,163,184,0.2);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.6);margin-top:4px;font-family:inherit;}',
+      '.pac-item{padding:0.5rem 1rem;font-size:0.82rem;color:#9ca3af;cursor:pointer;border-top:1px solid rgba(148,163,184,0.07);}',
+      '.pac-item:hover,.pac-item-selected{background:rgba(56,189,248,0.08);}',
+      '.pac-item-query{color:#f9fafb;font-size:0.85rem;}',
+      '.pac-icon{display:none;}',
+      '.pac-logo:after{display:none;}',
     ].join('');
     document.head.appendChild(style);
 
@@ -239,6 +246,46 @@
     document.getElementById('cart-overlay').addEventListener('click', closeSidebar);
 
     renderCart();
+    loadPlacesAutocomplete();
+  }
+
+  /* ── Google Places Autocomplete ── */
+  function initAutocomplete() {
+    var input = document.getElementById('cart-street');
+    if (!input || !window.google) return;
+    var ac = new google.maps.places.Autocomplete(input, {
+      types: ['address'],
+      fields: ['address_components'],
+    });
+    ac.addListener('place_changed', function () {
+      var place = ac.getPlace();
+      if (!place.address_components) return;
+      var num = '', route = '', city = '', state = '', zip = '', country = '';
+      place.address_components.forEach(function (c) {
+        var t = c.types;
+        if (t.indexOf('street_number') > -1)              num     = c.long_name;
+        if (t.indexOf('route') > -1)                      route   = c.long_name;
+        if (t.indexOf('locality') > -1)                   city    = c.long_name;
+        if (t.indexOf('administrative_area_level_1') > -1) state  = c.short_name;
+        if (t.indexOf('postal_code') > -1)                zip     = c.long_name;
+        if (t.indexOf('country') > -1)                    country = c.long_name;
+      });
+      var s = document.getElementById('cart-street');
+      if (s) s.value = num ? num + ' ' + route : route;
+      var f = function (id, val) { var el = document.getElementById(id); if (el) el.value = val; };
+      f('cart-city', city); f('cart-state', state); f('cart-zip', zip); f('cart-country', country);
+    });
+  }
+
+  function loadPlacesAutocomplete() {
+    if (window.google && window.google.maps && window.google.maps.places) {
+      initAutocomplete(); return;
+    }
+    window.__cartPlacesReady = initAutocomplete;
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ztkjShuqL0x_TRPRX-w7S73HE8ImxiY&libraries=places&callback=__cartPlacesReady';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
   }
 
   if (document.readyState === 'loading') {
