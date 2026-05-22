@@ -225,7 +225,7 @@
           '<p id="cart-email-error">Please enter a valid email.</p>' +
           '<p class="cart-section-label">Shipping Address</p>' +
           '<input id="cart-name" type="text" class="cart-email-input" placeholder="Full name" autocomplete="name" />' +
-          '<input id="cart-street" type="text" class="cart-email-input" placeholder="Street address" autocomplete="address-line1" />' +
+          '<input id="cart-street" type="text" class="cart-email-input" placeholder="Street address" autocomplete="off" />' +
           '<div class="cart-addr-row">' +
             '<input id="cart-city" type="text" class="cart-email-input cart-addr-half" placeholder="City" autocomplete="address-level2" />' +
             '<input id="cart-state" type="text" class="cart-email-input cart-addr-half" placeholder="State" autocomplete="address-level1" />' +
