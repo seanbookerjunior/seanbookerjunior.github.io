@@ -258,17 +258,18 @@
     wrap.appendChild(placeAC);
 
     placeAC.addEventListener('gmp-placeselect', async function (e) {
-      var place = e.place;
+      var place = e.place || (e.detail && e.detail.place);
+      if (!place) return;
       await place.fetchFields({ fields: ['addressComponents'] });
       var num = '', route = '', city = '', state = '', zip = '', country = '';
       (place.addressComponents || []).forEach(function (c) {
         var t = c.types;
-        if (t.indexOf('street_number') > -1)               num     = c.longText;
-        if (t.indexOf('route') > -1)                       route   = c.longText;
-        if (t.indexOf('locality') > -1)                    city    = c.longText;
-        if (t.indexOf('administrative_area_level_1') > -1) state   = c.shortText;
-        if (t.indexOf('postal_code') > -1)                 zip     = c.longText;
-        if (t.indexOf('country') > -1)                     country = c.longText;
+        if (t.indexOf('street_number') > -1)               num     = c.longText  || c.long_name  || '';
+        if (t.indexOf('route') > -1)                       route   = c.longText  || c.long_name  || '';
+        if (t.indexOf('locality') > -1)                    city    = c.longText  || c.long_name  || '';
+        if (t.indexOf('administrative_area_level_1') > -1) state   = c.shortText || c.short_name || '';
+        if (t.indexOf('postal_code') > -1)                 zip     = c.longText  || c.long_name  || '';
+        if (t.indexOf('country') > -1)                     country = c.longText  || c.long_name  || '';
       });
       var streetHidden = document.getElementById('cart-street');
       if (streetHidden) streetHidden.value = num ? num + ' ' + route : route;
