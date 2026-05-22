@@ -86,7 +86,7 @@ module.exports = async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      const msg = data?.errors?.[0]?.detail || data?.message || 'Payment creation failed';
+      const msg = data?.message || data?.error || data?.errors?.[0]?.detail || 'Payment creation failed';
       return res.status(response.status).json({ error: msg });
     }
 
