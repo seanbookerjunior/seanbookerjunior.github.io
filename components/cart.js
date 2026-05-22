@@ -155,7 +155,7 @@
     style.textContent = [
       '#cart-overlay{display:none;position:fixed;inset:0;background:rgba(5,5,9,0.72);backdrop-filter:blur(5px);z-index:8000;}',
       '#cart-overlay.open{display:block;}',
-      '#cart-sidebar{position:fixed;top:0;right:0;height:100%;width:360px;max-width:92vw;background:rgba(9,13,24,0.99);border-left:1px solid rgba(148,163,184,0.12);box-shadow:-20px 0 60px rgba(0,0,0,0.6);z-index:8001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.28s ease;}',
+      '#cart-sidebar{position:fixed;top:0;right:0;height:100%;width:440px;max-width:96vw;background:rgba(9,13,24,0.99);border-left:1px solid rgba(148,163,184,0.12);box-shadow:-20px 0 60px rgba(0,0,0,0.6);z-index:8001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.28s ease;}',
       '#cart-sidebar.open{transform:translateX(0);}',
       '.cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(148,163,184,0.1);flex-shrink:0;}',
       '.cart-title{font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f9fafb;margin:0;}',
@@ -171,7 +171,7 @@
       '.cart-qty-btn{background:rgba(15,23,42,0.9);border:1px solid rgba(148,163,184,0.2);border-radius:999px;color:#e5e7eb;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.9rem;line-height:1;transition:border-color 0.15s;padding:0;}',
       '.cart-qty-btn:hover{border-color:rgba(56,189,248,0.5);}',
       '.cart-qty-num{font-size:0.85rem;color:#f9fafb;min-width:18px;text-align:center;}',
-      '#cart-footer{flex-direction:column;padding:1.25rem 1.5rem 1.75rem;border-top:1px solid rgba(148,163,184,0.1);gap:0.75rem;flex-shrink:0;}',
+      '#cart-footer{flex-direction:column;padding:1.25rem 1.75rem 1.75rem;border-top:1px solid rgba(148,163,184,0.1);gap:0.75rem;flex-shrink:0;}',
       '.cart-total-row{display:flex;justify-content:space-between;align-items:center;}',
       '.cart-total-label{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;}',
       '.cart-total-value{font-size:1.05rem;font-weight:700;color:#f9fafb;}',
