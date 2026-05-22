@@ -252,7 +252,10 @@
   /* ── Google Places Autocomplete ── */
   function initAutocomplete() {
     var input = document.getElementById('cart-street');
-    if (!input || !window.google) return;
+    if (!input) return;
+    if (!window.google || !window.google.maps || !window.google.maps.places) {
+      setTimeout(initAutocomplete, 300); return;
+    }
     var ac = new google.maps.places.Autocomplete(input, {
       types: ['address'],
       fields: ['address_components'],
@@ -263,15 +266,15 @@
       var num = '', route = '', city = '', state = '', zip = '', country = '';
       place.address_components.forEach(function (c) {
         var t = c.types;
-        if (t.indexOf('street_number') > -1)              num     = c.long_name;
-        if (t.indexOf('route') > -1)                      route   = c.long_name;
-        if (t.indexOf('locality') > -1)                   city    = c.long_name;
-        if (t.indexOf('administrative_area_level_1') > -1) state  = c.short_name;
-        if (t.indexOf('postal_code') > -1)                zip     = c.long_name;
-        if (t.indexOf('country') > -1)                    country = c.long_name;
+        if (t.indexOf('street_number') > -1)               num     = c.long_name;
+        if (t.indexOf('route') > -1)                       route   = c.long_name;
+        if (t.indexOf('locality') > -1)                    city    = c.long_name;
+        if (t.indexOf('administrative_area_level_1') > -1) state   = c.short_name;
+        if (t.indexOf('postal_code') > -1)                 zip     = c.long_name;
+        if (t.indexOf('country') > -1)                     country = c.long_name;
       });
-      var s = document.getElementById('cart-street');
-      if (s) s.value = num ? num + ' ' + route : route;
+      var streetEl = document.getElementById('cart-street');
+      if (streetEl) streetEl.value = num ? num + ' ' + route : route;
       var f = function (id, val) { var el = document.getElementById(id); if (el) el.value = val; };
       f('cart-city', city); f('cart-state', state); f('cart-zip', zip); f('cart-country', country);
     });
@@ -281,10 +284,10 @@
     if (window.google && window.google.maps && window.google.maps.places) {
       initAutocomplete(); return;
     }
-    window.__cartPlacesReady = initAutocomplete;
     var s = document.createElement('script');
-    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ztkjShuqL0x_TRPRX-w7S73HE8ImxiY&libraries=places&callback=__cartPlacesReady';
-    s.async = true; s.defer = true;
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ztkjShuqL0x_TRPRX-w7S73HE8ImxiY&libraries=places';
+    s.async = true;
+    s.onload = function () { initAutocomplete(); };
     document.head.appendChild(s);
   }
 
