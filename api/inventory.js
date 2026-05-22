@@ -5,11 +5,15 @@ module.exports = async function handler(req, res) {
   if (!url) return res.status(500).json({ error: 'Inventory not configured' });
 
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await fetch(url, { redirect: 'follow' });
+    const text = await response.text();
+    let data;
+    try { data = JSON.parse(text); } catch {
+      return res.status(500).json({ error: 'Invalid JSON from inventory', raw: text.slice(0, 300), status: response.status });
+    }
     res.setHeader('Cache-Control', 's-maxage=60');
     return res.status(200).json(data);
-  } catch {
-    return res.status(500).json({ error: 'Failed to fetch inventory' });
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to fetch inventory', detail: err.message });
   }
 };
