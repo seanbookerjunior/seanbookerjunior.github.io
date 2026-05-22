@@ -200,8 +200,12 @@
       '.product-card-atc:hover{background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.5);}',
       '.product-card-footer{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;}',
       /* Google Places new element */
-      '.cart-street-wrap{width:100%;}',
-      '.cart-street-wrap gmp-placeautocomplete{width:100%;--gmp-input-background:rgba(15,23,42,0.9);--gmp-input-border-color:rgba(148,163,184,0.3);--gmp-input-border-radius:999px;--gmp-input-color:#f9fafb;--gmp-input-font-size:0.85rem;--gmp-input-padding:0.65rem 1.1rem;}',
+      '.pac-container{background:rgba(9,13,24,0.99);border:1px solid rgba(148,163,184,0.2);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.6);margin-top:4px;font-family:inherit;z-index:9999;}',
+      '.pac-item{padding:0.5rem 1rem;font-size:0.82rem;color:#9ca3af;cursor:pointer;border-top:1px solid rgba(148,163,184,0.07);}',
+      '.pac-item:hover,.pac-item-selected{background:rgba(56,189,248,0.08);}',
+      '.pac-item-query{color:#f9fafb;font-size:0.85rem;}',
+      '.pac-icon{display:none;}',
+      '.pac-logo:after{display:none;}',
     ].join('');
     document.head.appendChild(style);
 
@@ -221,7 +225,7 @@
           '<p id="cart-email-error">Please enter a valid email.</p>' +
           '<p class="cart-section-label">Shipping Address</p>' +
           '<input id="cart-name" type="text" class="cart-email-input" placeholder="Full name" autocomplete="name" />' +
-          '<div id="cart-street-wrap" class="cart-street-wrap"></div><input type="hidden" id="cart-street" />' +
+          '<input id="cart-street" type="text" class="cart-email-input" placeholder="Street address" autocomplete="off" />' +
           '<div class="cart-addr-row">' +
             '<input id="cart-city" type="text" class="cart-email-input cart-addr-half" placeholder="City" autocomplete="address-level2" />' +
             '<input id="cart-state" type="text" class="cart-email-input cart-addr-half" placeholder="State" autocomplete="address-level1" />' +
@@ -246,48 +250,32 @@
   }
 
   /* ── Google Places Autocomplete ── */
-  function parseAndFill(text) {
-    if (!text || !text.includes(',')) return;
-    // Google formats as: "400 Claremont Ave, Jersey City, NJ 07304, United States"
-    var parts = text.split(',').map(function (p) { return p.trim(); });
-    var street  = parts[0] || '';
-    var city    = parts[1] || '';
-    var stateZip = (parts[2] || '').trim().split(/\s+/);
-    var state   = stateZip[0] || '';
-    var zip     = stateZip[1] || '';
-    var country = parts[3] || '';
-    var streetHidden = document.getElementById('cart-street');
-    if (streetHidden) streetHidden.value = street;
-    var f = function (id, val) { var el = document.getElementById(id); if (el && val) el.value = val; };
-    f('cart-city', city); f('cart-state', state); f('cart-zip', zip); f('cart-country', country);
-  }
-
-  function getPlaceText(placeAC) {
-    if (typeof placeAC.value === 'string' && placeAC.value) return placeAC.value;
-    if (placeAC.shadowRoot) {
-      var inp = placeAC.shadowRoot.querySelector('input');
-      if (inp && inp.value) return inp.value;
-    }
-    return '';
-  }
-
   function initAutocomplete() {
-    var wrap = document.getElementById('cart-street-wrap');
-    if (!wrap) return;
+    var input = document.getElementById('cart-street');
+    if (!input) return;
     if (!window.google || !window.google.maps || !window.google.maps.places) {
       setTimeout(initAutocomplete, 300); return;
     }
-    var placeAC = new google.maps.places.PlaceAutocompleteElement({ types: ['address'] });
-    wrap.appendChild(placeAC);
-
-    // Primary: event-based
-    placeAC.addEventListener('gmp-placeselect', function (e) {
-      setTimeout(function () { parseAndFill(getPlaceText(placeAC)); }, 100);
+    var ac = new google.maps.places.Autocomplete(input, {
+      types: ['address'],
+      fields: ['address_components'],
     });
-
-    // Fallback: parse on focusout (fires when user picks from dropdown and focus leaves)
-    wrap.addEventListener('focusout', function () {
-      setTimeout(function () { parseAndFill(getPlaceText(placeAC)); }, 200);
+    ac.addListener('place_changed', function () {
+      var place = ac.getPlace();
+      if (!place || !place.address_components) return;
+      var num = '', route = '', city = '', state = '', zip = '', country = '';
+      place.address_components.forEach(function (c) {
+        var t = c.types;
+        if (t.indexOf('street_number') > -1)               num     = c.long_name;
+        if (t.indexOf('route') > -1)                       route   = c.long_name;
+        if (t.indexOf('locality') > -1)                    city    = c.long_name;
+        if (t.indexOf('administrative_area_level_1') > -1) state   = c.short_name;
+        if (t.indexOf('postal_code') > -1)                 zip     = c.long_name;
+        if (t.indexOf('country') > -1)                     country = c.long_name;
+      });
+      input.value = num ? num + ' ' + route : route;
+      var f = function (id, val) { var el = document.getElementById(id); if (el && val) el.value = val; };
+      f('cart-city', city); f('cart-state', state); f('cart-zip', zip); f('cart-country', country);
     });
   }
 
