@@ -36,3 +36,27 @@ class LabsProductDisclaimer extends HTMLElement {
   }
 }
 customElements.define('labs-product-disclaimer', LabsProductDisclaimer);
+
+class LabsFooter extends HTMLElement {
+  connectedCallback() {
+    const year = new Date().getFullYear();
+    this.innerHTML = `
+      <footer class="labs-footer">
+        <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.4rem 1.2rem;margin-bottom:1rem;">
+          <a href="/terms/" class="labs-footer-link">Terms of Service</a>
+          <a href="/research-disclaimer/" class="labs-footer-link">Research Use Only</a>
+          <a href="/faq/" class="labs-footer-link">FAQ</a>
+          <a href="/shipping/" class="labs-footer-link">Shipping Policy</a>
+          <a href="/refund/" class="labs-footer-link">Refund Policy</a>
+          <a href="/contact/" class="labs-footer-link">Contact</a>
+          <a href="/coa/" class="labs-footer-link">Certificates of Analysis</a>
+        </nav>
+        <p class="labs-footer-disclaimer">
+          All products are for research purposes only. Not for human consumption. Must be 18 or older to purchase. These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease.
+        </p>
+        <p class="labs-footer-copy">© ${year} ELVYN Labs. All rights reserved.</p>
+      </footer>
+    `;
+  }
+}
+customElements.define('labs-footer', LabsFooter);
