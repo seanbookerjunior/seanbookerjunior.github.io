@@ -146,7 +146,7 @@
   <script>
     fetch('/api/inventory').then(function(r){ return r.json(); }).then(function(stock) {
       document.querySelectorAll('[data-product]').forEach(function(btn) {
-        if ((stock[btn.dataset.product] || 0) <= 0) {
+        if (typeof stock[btn.dataset.product] === 'number' && stock[btn.dataset.product] <= 0) {
           btn.disabled = true;
           btn.textContent = 'Sold Out';
           btn.onclick = null;
