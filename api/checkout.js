@@ -92,47 +92,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: err.message });
   }
 
-  const apiKey = process.env.NEXAPAY_API_KEY;
-  if (!apiKey) return res.status(500).json({ error: 'Server configuration error' });
-
-  try {
-    const response = await fetch('https://nexapay.one/api/v1/payments', {
-      method: 'POST',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        amount,
-        currency: 'USD',
-        crypto: 'USDC',
-        customer_email: email,
-        description: lines.join(', '),
-        success_url: 'https://elvynlabs.com/success',
-        cancel_url: 'https://elvynlabs.com/cancel',
-        callback_url: 'https://elvynlabs.com/api/webhook',
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      const msg = data?.message || data?.error || data?.errors?.[0]?.detail || 'Payment creation failed';
-      return res.status(response.status).json({ error: msg });
-    }
-
-    const checkoutUrl = data?.payment?.checkout_url ?? data?.data?.payment?.checkout_url;
-    if (!checkoutUrl) {
-      return res.status(500).json({ error: 'Payment creation failed. Please try again.' });
-    }
-
-    const paymentId = data?.payment?.id ?? data?.data?.payment?.id ?? '';
-    logOrderToSheet({ paymentId, email, shipping, lines, amount }).catch(() => {});
-    decrementStock(cart).catch(() => {});
-
-    return res.status(200).json({ checkout_url: checkoutUrl });
-  } catch {
-    return res.status(500).json({ error: 'Internal server error' });
-  }
+  // TODO: Easy Pay Direct integration
+  // Wire up EPD API key, endpoint, and request shape here
+  return res.status(501).json({ error: 'Payment processor not yet configured' });
 };

@@ -237,7 +237,7 @@
           '<p id="cart-addr-error">Please fill in your complete shipping address.</p>' +
           '<p id="cart-net-error"></p>' +
           '<button id="cart-checkout-btn" class="cart-checkout-btn" onclick="cartCheckout()">Checkout</button>' +
-          '<p class="cart-note">Payments via NexaPay · Settled in USDC</p>' +
+          '<p class="cart-note">Secure Checkout</p>' +
         '</div>' +
       '</div>'
     );
