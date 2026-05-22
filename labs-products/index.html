@@ -84,7 +84,7 @@
           <p class="product-card-price">$85</p>
           <div class="product-card-footer">
 
-            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'BPC-157',price:85})">+ Add</button>
+            <button class="product-card-atc" data-product="BPC-157" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'BPC-157',price:85})">+ Add</button>
           </div>
         </div>
       </a>
@@ -99,7 +99,7 @@
           <p class="product-card-price">$85</p>
           <div class="product-card-footer">
 
-            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'TB-500',price:85})">+ Add</button>
+            <button class="product-card-atc" data-product="TB-500" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'TB-500',price:85})">+ Add</button>
           </div>
         </div>
       </a>
@@ -114,7 +114,7 @@
           <p class="product-card-price">$75</p>
           <div class="product-card-footer">
 
-            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'GHK-Cu',price:75})">+ Add</button>
+            <button class="product-card-atc" data-product="GHK-Cu" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'GHK-Cu',price:75})">+ Add</button>
           </div>
         </div>
       </a>
@@ -129,7 +129,7 @@
           <p class="product-card-price">$160</p>
           <div class="product-card-footer">
 
-            <button class="product-card-atc" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'GLO',price:160})">+ Add</button>
+            <button class="product-card-atc" data-product="GLO" onclick="event.preventDefault();event.stopPropagation();addToCart({name:'GLO',price:160})">+ Add</button>
           </div>
         </div>
       </a>
@@ -143,5 +143,16 @@
 
   <script src="/components/labs-components.js"></script>
   <script src="/components/cart.js"></script>
+  <script>
+    fetch('/api/inventory').then(function(r){ return r.json(); }).then(function(stock) {
+      document.querySelectorAll('[data-product]').forEach(function(btn) {
+        if ((stock[btn.dataset.product] || 0) <= 0) {
+          btn.disabled = true;
+          btn.textContent = 'Sold Out';
+          btn.onclick = null;
+        }
+      });
+    }).catch(function(){});
+  </script>
 </body>
 </html>

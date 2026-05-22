@@ -1,3 +1,29 @@
+async function checkStock(cart) {
+  const url = process.env.GOOGLE_INVENTORY_URL;
+  if (!url) return;
+  const res = await fetch(url);
+  const stock = await res.json();
+  for (const item of cart) {
+    const qty = Math.max(1, Math.floor(Number(item.quantity) || 1));
+    const available = stock[item.name] ?? 0;
+    if (available < qty) throw new Error(`${item.name} is out of stock`);
+  }
+}
+
+async function decrementStock(cart) {
+  const url = process.env.GOOGLE_INVENTORY_URL;
+  if (!url) return;
+  const items = cart.map(item => ({
+    name: item.name,
+    quantity: Math.max(1, Math.floor(Number(item.quantity) || 1)),
+  }));
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'decrement', items }),
+  });
+}
+
 async function logOrderToSheet({ paymentId, email, shipping, lines, amount }) {
   const url = process.env.GOOGLE_SHEET_URL;
   if (!url) return;
@@ -60,6 +86,12 @@ module.exports = async function handler(req, res) {
     lines.push(`${item.name} x${qty}`);
   }
 
+  try {
+    await checkStock(cart);
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+
   const apiKey = process.env.NEXAPAY_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'Server configuration error' });
 
@@ -97,6 +129,7 @@ module.exports = async function handler(req, res) {
 
     const paymentId = data?.payment?.id ?? data?.data?.payment?.id ?? '';
     logOrderToSheet({ paymentId, email, shipping, lines, amount }).catch(() => {});
+    decrementStock(cart).catch(() => {});
 
     return res.status(200).json({ checkout_url: checkoutUrl });
   } catch {

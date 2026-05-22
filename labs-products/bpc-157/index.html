@@ -57,5 +57,14 @@
   <script>window.PRODUCT = { name: 'BPC-157', price: 85 };</script>
   <script src="/components/labs-components.js"></script>
   <script src="/components/cart.js"></script>
+  <script>
+    fetch('/api/inventory').then(function(r){ return r.json(); }).then(function(stock) {
+      var name = window.PRODUCT && window.PRODUCT.name;
+      if (name && (stock[name] || 0) <= 0) {
+        var btn = document.querySelector('.product-add-to-cart');
+        if (btn) { btn.disabled = true; btn.textContent = 'Sold Out'; btn.onclick = null; }
+      }
+    }).catch(function(){});
+  </script>
 </body>
 </html>
