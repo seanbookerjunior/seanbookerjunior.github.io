@@ -136,6 +136,25 @@
       border-color: rgba(148, 163, 184, 0.6);
       box-shadow: none;
     }
+
+    .card-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #d1d5db;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .card-email:hover {
+      color: #f9fafb;
+    }
+
+    .card-email svg {
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
@@ -169,6 +188,13 @@
       <a href="https://whop.com/backwardshatguy/30-minute-coaching-call-51/" target="_blank" class="card-link">Book a 1:1 Call</a>
       <a href="https://whop.com/checkout/plan_J4ICEsCmofece" target="_blank" class="card-link secondary">Get the E-Book</a>
     </div>
+
+    <a href="mailto:seanbookerjr@elvynlabs.com" class="card-email">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      seanbookerjr@elvynlabs.com
+    </a>
   </div>
 
 </body>
